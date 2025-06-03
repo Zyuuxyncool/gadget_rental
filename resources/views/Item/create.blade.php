@@ -1,0 +1,156 @@
+@extends('layouts/app')
+
+@section('title', 'Dashboard')
+
+@section('content')
+
+<div class="products">
+    <div class="products-header">
+        <div class="select-wrapper">
+            <select class="Show" id="showSelect">
+                <option value="10">10</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            <ion-icon id="selectIcon" name="chevron-down-circle-outline"></ion-icon>
+        </div>
+
+        <div class="add-product">
+            <a href="{{ route('item.create') }}" class="add-product-btn">
+                <ion-icon name="add-circle-outline"></ion-icon>
+                Add Produk
+            </a>
+        </div>
+
+    </div>
+
+
+    <div class="popup-overlay" id="popup">
+        <div class="popup-box">
+            <a href="{{ route ('item.index') }}"><button class="close-btn" onclick="closePopup()">✕</button></a>
+
+            <div class="form-left">
+                <label for="nama">Nama Produk :</label>
+                <input type="text" id="nama" placeholder="Masukan Nama Produk">
+
+                <label for="harga">Harga Produk :</label>
+                <input type="text" id="harga" placeholder="Masukan Harga Produk">
+
+                <label for="deskripsi">Deksripsi Produk :</label>
+                <textarea id="deskripsi" placeholder="Masukan Deksripsi Produk"></textarea>
+            </div>
+
+            <div class="form-right">
+                <div class="drop-area" id="dropArea">
+                    <img src="{{ asset('icon/icons8-drag-and-drop-48.png') }}" alt="icon" />
+                    <p>Drop/Drag an image Produk</p>
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                    <div id="previewContainer"></div>
+                </div>
+
+                <button class="add-btn">ADD Produk</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="table-products">
+        <table id="productsTable">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Produk</th>
+                    <th>Harga</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Edit Produk</th>
+                    <th>Hapus Produk</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for($i=1; $i<=100; $i++)
+                    <tr>
+                    <td>{{ $i }}</td>
+                    <td>Produk {{ $i }}</td>
+                    <td>Rp. {{ $i * 10000 }}</td>
+                    <td>8/256</td>
+
+                    <td>
+                        <img src="{{ asset('img/xiaomi14T.png') }}" alt="produk" class="product-img" style="width: 100px; height: 50px;">
+                    </td>
+                    <td>
+                        <button class="edit-btn"><ion-icon name="create-outline"></ion-icon></i></button>
+                    </td>
+                    <td>
+                        <button class="delete-btn"><ion-icon name="trash-outline"></ion-icon></button>
+                    </td>
+                    </tr>
+                    @endfor
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@endsection
+
+@push('scripts')
+<script>
+    const dropArea = document.getElementById("dropArea");
+    const fileInput = document.getElementById("fileInput");
+    const previewContainer = document.getElementById("previewContainer");
+
+    // Prevent default drag behaviors
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, e => e.preventDefault());
+    });
+
+    // Highlight on dragover
+    dropArea.addEventListener("dragover", () => {
+        dropArea.classList.add("highlight");
+    });
+
+    // Remove highlight on dragleave or drop
+    dropArea.addEventListener("dragleave", () => {
+        dropArea.classList.remove("highlight");
+    });
+    dropArea.addEventListener("drop", () => {
+        dropArea.classList.remove("highlight");
+    });
+
+    // Handle drop
+    dropArea.addEventListener("drop", handleDrop);
+
+    function handleDrop(e) {
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith("image/")) {
+            previewImage(file);
+        }
+    }
+
+    // Allow click to open file picker
+    dropArea.addEventListener("click", () => fileInput.click());
+    fileInput.addEventListener("change", () => {
+        const file = fileInput.files[0];
+        if (file && file.type.startsWith("image/")) {
+            previewImage(file);
+        }
+    });
+
+    function previewImage(file) {
+        // Hapus Elemen Gambar dan paragraph asli
+        const dropImage = dropArea.querySelector('img');
+        const dropText = dropArea.querySelector('p');
+        if (dropImage) dropImage.remove();
+        if (dropText) dropText.remove();
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewContainer.innerHTML = `<img src="${e.target.result}" style="max-width: 100px; max-height: 100px; margin-top: 10px; height: 100%; width: auto;" alt="Preview">`;
+        };
+
+        reader.readAsDataURL(file);
+
+    }
+</script>
+
+@endpush
