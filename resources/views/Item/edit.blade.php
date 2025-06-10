@@ -5,6 +5,7 @@
 @section('content')
 
 <div class="products">
+    
     <div class="products-header">
         <div class="select-wrapper">
             <select class="Show" id="showSelect">
@@ -23,7 +24,6 @@
         </div>
 
     </div>
-
 
     <div class="popup-overlay" id="popup">
         <div class="popup-box">
@@ -57,7 +57,6 @@
         </div>
     </div>
 
-
     <div class="table-products">
         <table id="productsTable">
             <thead>
@@ -74,7 +73,7 @@
             <tbody>
                 @foreach($items as $produk)
                 <tr>
-                    <td>{{ $produk->id }}</td>
+                    <td>{{ $loop -> iteration }}</td>
                     <td>{{ $produk->name }}</td>
                     <td>Rp.{{ $produk->price }}</td>
                     <td>{{ $produk->description }}</td>

@@ -5,6 +5,7 @@
 @section('content')
 
 <div class="products">
+    
     <div class="products-header">
         <div class="select-wrapper">
             <select class="Show" id="showSelect">
@@ -42,7 +43,7 @@
             <tbody>
                 @foreach($items as $item)
                 <tr>
-                    <td>{{ $item->id}}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->name }}</td>
                     <td>Rp. {{ $item->price }}</td>
                     <td>{{$item->description }}</td>
@@ -54,7 +55,7 @@
                     </td>
                     <td>
 
-                        <button  class="delete-btn" onclick="delete_data({{ $item->id }})" href="javascript:void(0)"><ion-icon name="trash-outline"></ion-icon></button>
+                        <button class="delete-btn" onclick="delete_data({{ $item->id }})" href="javascript:void(0)"><ion-icon name="trash-outline"></ion-icon></button>
                     </td>
                 </tr>
                 @endforeach

@@ -5,6 +5,7 @@
 @section('content')
 
 <div class="products">
+
     <div class="products-header">
         <div class="select-wrapper">
             <select class="Show" id="showSelect">
@@ -24,39 +25,37 @@
 
     </div>
 
-
     <div class="popup-overlay" id="popup">
         <div class="popup-box">
             <a href="{{ route ('item.index') }}"><button class="close-btn" onclick="closePopup()">✕</button></a>
 
             <form class="form-flex" action="{{ route('item.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="form-left">
-                <label for="nama">Nama Produk :</label>
-                <input type="text" id="nama" name="name" placeholder="Masukan Nama Produk">
+                @csrf
+                <div class="form-left">
+                    <label for="nama">Nama Produk :</label>
+                    <input type="text" id="nama" name="name" placeholder="Masukan Nama Produk">
 
-                <label for="harga">Harga Produk :</label>
-                <input type="text" id="harga" name="price"  placeholder="Masukan Harga Produk">
+                    <label for="harga">Harga Produk :</label>
+                    <input type="text" id="harga" name="price" placeholder="Masukan Harga Produk">
 
-                <label for="deskripsi">Deksripsi Produk :</label>
-                <textarea id="deskripsi" name="description"  placeholder="Masukan Deksripsi Produk"></textarea>
-            </div>
-
-            <div class="form-right" method="">
-                <div class="drop-area" id="drop_area">
-                    <img src="{{ asset('icon/icons8-drag-and-drop-48.png') }}" alt="icon" />
-                    <p>Drop/Drag an image Produk</p>
-                    <!-- <input type="file" id="fileInput" accept="image/*" hidden> -->
-                    <input type="file" name="file_input" id="file_input" onchange="this.form.submit()" accept="image/*" hidden>
-                    <div id="preview_container"></div>
+                    <label for="deskripsi">Deksripsi Produk :</label>
+                    <textarea id="deskripsi" name="description" placeholder="Masukan Deksripsi Produk"></textarea>
                 </div>
 
-                <button type="submit" class="add-btn">ADD Produk</button>
-            </div>
+                <div class="form-right" method="">
+                    <div class="drop-area" id="drop_area">
+                        <img src="{{ asset('icon/icons8-drag-and-drop-48.png') }}" alt="icon" />
+                        <p>Drop/Drag an image Produk</p>
+                        <!-- <input type="file" id="fileInput" accept="image/*" hidden> -->
+                        <input type="file" name="file_input" id="file_input" onchange="this.form.submit()" accept="image/*" hidden>
+                        <div id="preview_container"></div>
+                    </div>
+                    <button type="submit" class="add-btn">ADD Produk</button>
+                </div>
             </form>
         </div>
-    </div>
 
+    </div>
 
     <div class="table-products">
         <table id="productsTable">
@@ -74,7 +73,7 @@
             <tbody>
                 @foreach($items as $item)
                 <tr>
-                    <td>{{ $item->id}}</td>
+                    <td>{{ $loop->iteration}}</td>
                     <td>{{ $item->name }}</td>
                     <td>Rp.{{ $item->price }}</td>
                     <td>{{$item->description }}</td>
