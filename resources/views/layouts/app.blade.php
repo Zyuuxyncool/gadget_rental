@@ -5,75 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Dashboard Zyuuxyn-Rental')</title>
-    
+
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    
-    <!-- Ion Icons -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 
 
-  </head>
-    
-    @stack('styles')
 </head>
 
-<body>
+<body id="bodyTheme">
     <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="repeat-outline"></ion-icon>
-                        </span>
-                        <span class="title">Zyuuxyn Rental</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('dashboard.index') }}" class="{{ request()->routeIs('dashboard.index') ? 'active' : '' }}">
-                        <span class="icon">
-                            <ion-icon name="speedometer-outline"></ion-icon>
-                        </span>
-                        <span class="title">Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('item.index') }}" class="{{ request()->routeIs('item.index') ? 'active' : '' }}">
-                        <span class="icon">
-                            <ion-icon name="pricetags-outline"></ion-icon>
-                        </span>
-                        <span class="title">Produk</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('customer.index') }}" class="{{ request()->routeIs('customer.index') ? 'active' : '' }}">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                        <span class="title">Customer</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('transaction.index') }}" class="{{ request()->routeIs('transaction.index') ? 'active' : '' }}">
-                        <span class="icon">
-                            <ion-icon name="swap-horizontal-outline"></ion-icon>
-                        </span>
-                        <span class="title">Transaksi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../logout.php" class="logout-button">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title">Logout</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+
+        <x-_sidebar></x-_sidebar>
 
         <!-- Main Content -->
         <div class="main">
@@ -83,12 +26,41 @@
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
 
-                    <div class="search">
-                        <label>
-                            <input class="search" type="text" placeholder="Search here">
-                            <ion-icon name="search-outline"></ion-icon>
-                        </label>
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle-btn" onclick="toggleThemePanel()" aria-controls="theme-panel" aria-expanded="false">
+                    <span class="sr-only"></span>
+                    <ion-icon name="color-palette-outline"></ion-icon>
+                </button>
+
+                <!-- Theme Panel -->
+                <div id="theme-panel" class="theme-panel">
+                    <div class="theme-panel-header">
+                        <span>Pilih Tema</span>
+                        <button class="theme-panel-close" onclick="toggleThemePanel()">&times;</button>
                     </div>
+
+                    <div class="theme-options">
+                        <button class="theme-option" data-theme="template-1">
+                            <div class="theme-option-preview">
+                                <span style="background:#543f3f"></span>
+                                <span style="background:#6a5151"></span>
+                                <span style="background:#a5a5a5"></span>
+                                <span style="background:#fff"></span>
+                            </div>
+                            <span class="theme-option-label">Coklat</span>
+                        </button>
+                        <button class="theme-option" data-theme="template-2">
+                            <div class="theme-option-preview">
+                                <span style="background:#537d5d;"></span>
+                                <span style="background:#73946b"></span>
+                                <span style="background:#9ebc8a"></span>
+                                <span style="background:#fff"></span>
+                            </div>
+                            <span class="theme-option-label">Hijau</span>
+                        </button>
+                    </div>
+                </div>
+
             </div>
 
             <!-- Content Section -->
@@ -100,13 +72,14 @@
 
     <!-- JavaScript -->
     <script src="{{ asset('js/main.js') }}"></script>
-    <!-- FullCalendar CSS -->
-<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
-
-<!-- FullCalendar JS -->
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js'></script>
-
+    <!-- Ion Icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
     @stack('scripts')
+
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 @extends('layouts/app')
 
-@section('title', 'Dashboard')
+@section('title', 'Produk')
 
 @section('content')
 
@@ -40,46 +40,57 @@
                 </tr>
             </thead>
             <tbody>
-                @for($i=1; $i<=100; $i++)
-                    <tr>
-                    <td>{{ $i }}</td>
-                    <td>Produk {{ $i }}</td>
-                    <td>Rp. {{ $i * 10000 }}</td>
-                    <td>8/256</td>
-
+                @foreach($items as $item)
+                <tr>
+                    <td>{{ $item->id}}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>Rp. {{ $item->price }}</td>
+                    <td>{{$item->description }}</td>
                     <td>
                         <img src="{{ asset('img/xiaomi14T.png') }}" alt="produk" class="product-img" style="width: 100px; height: 50px;">
                     </td>
                     <td>
-                        <a href="{{ route('item.edit', ['id' => $i]) }}"><button class="edit-btn"><ion-icon name="create-outline"></ion-icon></i></button></a>
+                        <a href="{{ route('item.edit', $item->id) }}"><button class="edit-btn"><ion-icon name="create-outline"></ion-icon></i></button></a>
                     </td>
                     <td>
-                        <button class="delete-btn"><ion-icon name="trash-outline"></ion-icon></button>
+
+                        <button  class="delete-btn" onclick="delete_data({{ $item->id }})" href="javascript:void(0)"><ion-icon name="trash-outline"></ion-icon></button>
                     </td>
-                    </tr>
-                    @endfor
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
 </div>
 
 
+
+
 @endsection
 
 @push('scripts')
 <script>
-    document.getElementById('openModalBtn').onclick = function(e) {
-        e.preventDefault();
-        document.getElementById('addProductModal').style.display = 'block';
-    };
-    document.getElementById('closeModalBtn').onclick = function() {
-        document.getElementById('addProductModal').style.display = 'none';
-    };
-    window.onclick = function(event) {
-        var modal = document.getElementById('addProductModal');
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    };
+    let delete_data = (id) => {
+        $.post("{{ url('item') }}/" + id, {
+            _token: '{{ csrf_token() }}',
+            _method: 'delete'
+        }, () => {
+            alert('Berhasil dihapus');
+            window.location.reload();
+        });
+    }
+    // document.getElementById('openModalBtn').onclick = function(e) {
+    //     e.preventDefault();
+    //     document.getElementById('addProductModal').style.display = 'block';
+    // };
+    // document.getElementById('closeModalBtn').onclick = function() {
+    //     document.getElementById('addProductModal').style.display = 'none';
+    // };
+    // window.onclick = function(event) {
+    //     var modal = document.getElementById('addProductModal');
+    //     if (event.target == modal) {
+    //         modal.style.display = "none";
+    //     }
+    // };
 </script>
 @endpush

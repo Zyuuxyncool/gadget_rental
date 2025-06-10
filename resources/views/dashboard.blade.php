@@ -3,14 +3,14 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="cardBox">
+<div class="card-box">
     <div class="card">
         <div>
             <div class="numbers">1,504</div>
-            <div class="cardName">Produk</div>
+            <div class="card-name">Produk</div>
         </div>
 
-        <div class="iconBx">
+        <div class="icon-bx">
             <ion-icon name="cube-outline"></ion-icon>
         </div>
     </div>
@@ -18,10 +18,10 @@
     <div class="card">
         <div>
             <div class="numbers">80</div>
-            <div class="cardName">Customer</div>
+            <div class="card-name">Customer</div>
         </div>
 
-        <div class="iconBx">
+        <div class="icon-bx">
             <ion-icon name="people-outline"></ion-icon>
         </div>
     </div>
@@ -29,10 +29,10 @@
     <div class="card">
         <div>
             <div class="numbers">284</div>
-            <div class="cardName">History Transaksi</div>
+            <div class="card-name">History Transaksi</div>
         </div>
 
-        <div class="iconBx">
+        <div class="icon-bx">
             <ion-icon name="time-outline"></ion-icon>
         </div>
     </div>
@@ -40,18 +40,18 @@
     <div class="card">
         <div>
             <div class="numbers">Rp. 1.000.000</div>
-            <div class="cardName">Penghasilan</div>
+            <div class="card-name">Penghasilan</div>
         </div>
 
-        <div class="iconBx">
+        <div class="icon-bx">
             <ion-icon name="wallet"></ion-icon>
         </div>
     </div>
 </div>
 
 <div class="details">
-    <div class="recentOrders">
-        <div class="cardHeader">
+    <div class="recent-orders">
+        <div class="card-header">
             <h2>Transaksi Terbaru</h2>
             <a href="{{ route('transaction.index') }}" class="btn">Lihat Semua</a>
         </div>
@@ -65,7 +65,6 @@
                 </tr>
         </thead>
         <tbody>
-
             <tr>
                 <td>Muhammad Andreas Athallah Saifa Anam</td>
                 <td>BMW M4</td>
@@ -94,7 +93,7 @@
                 <td>Muhammad Andreas Athallah Saifa Anam</td>
                 <td>Alphard</td>
                 <td>2025-07-11</td>
-                <td><span class="status belumKembali">Belum kembali</span></td>
+                <td><span class="status belum-kembali">Belum kembali</span></td>
             </tr>
             <tr>
                 <td>Muhammad Andreas Athallah Saifa Anam</td>
@@ -145,15 +144,15 @@
         </table>
     </div>
 
-    <div class="recentCustomers">
-        <div class="cardHeader">
+    <div class="recent-customers">
+        <div class="card-header">
             <h2>Customer Terbaru</h2>
             <a href="{{ route('customer.index') }}" class="btn">Lihat Semua</a>
         </div>
         <table>
             <tr>
                 <td width="60px">
-                    <div class="imgBx">
+                    <div class="img-bx">
                         <img src="{{ asset('img/default-avatar.jpg') }}" alt="">
                     </div>
                 </td>
@@ -163,7 +162,7 @@
             </tr>
             <tr>
                 <td width="60px">
-                    <div class="imgBx">
+                    <div class="img-bx">
                         <img src="{{ asset('img/default-avatar.jpg') }}" alt="">
                     </div>
                 </td>
@@ -173,7 +172,7 @@
             </tr>
             <tr>
                 <td width="60px">
-                    <div class="imgBx">
+                    <div class="img-bx">
                         <img src="{{ asset('img/default-avatar.jpg') }}" alt="">
                     </div>
                 </td>
@@ -181,9 +180,9 @@
                     <h4>Muhammad Andreas Athallah Saifa Anam<br><span>Web Developer</span></h4>
                 </td>
             </tr>
-                        <tr>
+            <tr>
                 <td width="60px">
-                    <div class="imgBx">
+                    <div class="img-bx">
                         <img src="{{ asset('img/default-avatar.jpg') }}" alt="">
                     </div>
                 </td>
@@ -191,9 +190,9 @@
                     <h4>Muhammad Andreas Athallah Saifa Anam<br><span>Web Developer</span></h4>
                 </td>
             </tr>
-                        <tr>
+            <tr>
                 <td width="60px">
-                    <div class="imgBx">
+                    <div class="img-bx">
                         <img src="{{ asset('img/default-avatar.jpg') }}" alt="">
                     </div>
                 </td>
@@ -201,9 +200,9 @@
                     <h4>Muhammad Andreas Athallah Saifa Anam<br><span>Web Developer</span></h4>
                 </td>
             </tr>
-                        <tr>
+            <tr>
                 <td width="60px">
-                    <div class="imgBx">
+                    <div class="img-bx">
                         <img src="{{ asset('img/default-avatar.jpg') }}" alt="">
                     </div>
                 </td>

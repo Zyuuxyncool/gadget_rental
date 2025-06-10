@@ -1,6 +1,6 @@
 @extends('layouts/app')
 
-@section('title', 'Dashboard')
+@section('title', 'Tambah Produk')
 
 @section('content')
 
@@ -29,27 +29,31 @@
         <div class="popup-box">
             <a href="{{ route ('item.index') }}"><button class="close-btn" onclick="closePopup()">✕</button></a>
 
+            <form class="form-flex" action="{{ route('item.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="form-left">
                 <label for="nama">Nama Produk :</label>
-                <input type="text" id="nama" placeholder="Masukan Nama Produk">
+                <input type="text" id="nama" name="name" placeholder="Masukan Nama Produk">
 
                 <label for="harga">Harga Produk :</label>
-                <input type="text" id="harga" placeholder="Masukan Harga Produk">
+                <input type="text" id="harga" name="price"  placeholder="Masukan Harga Produk">
 
                 <label for="deskripsi">Deksripsi Produk :</label>
-                <textarea id="deskripsi" placeholder="Masukan Deksripsi Produk"></textarea>
+                <textarea id="deskripsi" name="description"  placeholder="Masukan Deksripsi Produk"></textarea>
             </div>
 
-            <div class="form-right">
-                <div class="drop-area" id="dropArea">
+            <div class="form-right" method="">
+                <div class="drop-area" id="drop_area">
                     <img src="{{ asset('icon/icons8-drag-and-drop-48.png') }}" alt="icon" />
                     <p>Drop/Drag an image Produk</p>
-                    <input type="file" id="fileInput" accept="image/*" hidden>
-                    <div id="previewContainer"></div>
+                    <!-- <input type="file" id="fileInput" accept="image/*" hidden> -->
+                    <input type="file" name="file_input" id="file_input" onchange="this.form.submit()" accept="image/*" hidden>
+                    <div id="preview_container"></div>
                 </div>
 
-                <button class="add-btn">ADD Produk</button>
+                <button type="submit" class="add-btn">ADD Produk</button>
             </div>
+            </form>
         </div>
     </div>
 
@@ -68,24 +72,23 @@
                 </tr>
             </thead>
             <tbody>
-                @for($i=1; $i<=100; $i++)
-                    <tr>
-                    <td>{{ $i }}</td>
-                    <td>Produk {{ $i }}</td>
-                    <td>Rp. {{ $i * 10000 }}</td>
-                    <td>8/256</td>
-
+                @foreach($items as $item)
+                <tr>
+                    <td>{{ $item->id}}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>Rp.{{ $item->price }}</td>
+                    <td>{{$item->description }}</td>
                     <td>
                         <img src="{{ asset('img/xiaomi14T.png') }}" alt="produk" class="product-img" style="width: 100px; height: 50px;">
                     </td>
                     <td>
-                        <button class="edit-btn"><ion-icon name="create-outline"></ion-icon></i></button>
+                        <a href="{{ route('item.edit', $item->id) }}"><button class="edit-btn"><ion-icon name="create-outline"></ion-icon></i></button></a>
                     </td>
                     <td>
                         <button class="delete-btn"><ion-icon name="trash-outline"></ion-icon></button>
                     </td>
-                    </tr>
-                    @endfor
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -95,26 +98,13 @@
 
 @push('scripts')
 <script>
-    const dropArea = document.getElementById("dropArea");
-    const fileInput = document.getElementById("fileInput");
-    const previewContainer = document.getElementById("previewContainer");
+    const dropArea = document.getElementById("drop_area");
+    const fileInput = document.getElementById("file_input");
+    const previewContainer = document.getElementById("preview_container");
 
-    // Prevent default drag behaviors
+    // Mencegah perilaku default untuk event drag and drop
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         dropArea.addEventListener(eventName, e => e.preventDefault());
-    });
-
-    // Highlight on dragover
-    dropArea.addEventListener("dragover", () => {
-        dropArea.classList.add("highlight");
-    });
-
-    // Remove highlight on dragleave or drop
-    dropArea.addEventListener("dragleave", () => {
-        dropArea.classList.remove("highlight");
-    });
-    dropArea.addEventListener("drop", () => {
-        dropArea.classList.remove("highlight");
     });
 
     // Handle drop
@@ -127,8 +117,8 @@
         }
     }
 
-    // Allow click to open file picker
-    dropArea.addEventListener("click", () => fileInput.click());
+    // Allow Touch, Untuk Membuka Peiliahan Gambar
+    dropArea.addEventListener("click", () => fileInput.click()); //click Input
     fileInput.addEventListener("change", () => {
         const file = fileInput.files[0];
         if (file && file.type.startsWith("image/")) {

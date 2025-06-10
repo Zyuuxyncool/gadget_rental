@@ -8,151 +8,203 @@
 }
 
 :root {
+    /* Div nya isi di dalam  cuman 1 div */
+    --template1-content-possition: relative;
+    --template1-content-width: 100%;
+    --template1-content-padding: 20px;
+    --template1-content-display: grid;
+    --template1-content-grid-template-columns: 1fr;
+    --template1-content-grid-gap: 15px;
+
+    /* Div nya isi di dalam 2 div */
+    --template2-content-possition: relative;
+    --template2-content-width: 100%;
+    --template2-content-padding: 20px;
+    --template2-content-display: grid;
+    --template2-content-grid-template-columns: repeat(2, 1fr);
+    --template2-content-grid-gap: 30px;
+
     /* Isi Warna Web */
-    --chocolate-brown: #543f3f;
-    --white: #fff;
-    --gray: #f5f5f5;
-    --black1: #6a5151;
-    --black2: #a5a5a5;
+    --template1-color1: #543f3f; /* Warna utama */
+    --template1-color2: #6a5151; /* Warna sekunder */
+    --template1-color3: #a5a5a5; /* Warna aksen hover + teks */
+    /* --template1-color4: ;    Opsi */
+    --template1-color5: #fff; /* Warna teks */
+    --template1-color6: #d9d9d9; /* Warna latar belakang */
     --shadow3D: 0 4px 10px 5px rgba(0, 0, 0, 0.4);
 
-    /* Warna Primer */
-    --color-primary: #3498db;
-    --color-primary-dark: #2980b9;
-    --color-primary-light: #5dade2;
+    /* template color 2 */
+    --template2-color1: #537d5d;
+    --template2-color2: #73946b;
+    --template2-color3: #9ebc8a;
+    /* --template2-color4: #d9d9d9; */ /* Opsi */
+    --template2-color5: #fff;
+    --template2-color6: #d2d0a0;
 
-    /* Warna Sekunder */
-    --color-secondary: #2ecc71;
-    --color-secondary-dark: #27ae60;
-    --color-secondary-light: #58d68d;
-
-    /* Warna Aksen/Highlight */
-    --color-accent: #e74c3c;
-    --color-accent-dark: #c0392b;
-    --color-accent-light: #ec7063;
-
-    /* Warna Netral */
-    --color-white: #ffffff;
-    --color-light: #f5f5f5;
-    --color-gray: #95a5a6;
-    --color-dark: #333333;
-    --color-black: #000000;
-
-    /* Warna Material Design */
-    --color-red: #f44336;
-    --color-pink: #e91e63;
-    --color-purple: #9c27b0;
-    --color-deep-purple: #673ab7;
-    --color-indigo: #3f51b5;
-    --color-blue: #2196f3;
-    --color-light-blue: #03a9f4;
-    --color-cyan: #00bcd4;
-    --color-teal: #009688;
-    --color-green: #4caf50;
-    --color-light-green: #8bc34a;
-    --color-lime: #cddc39;
-    --color-yellow: #ffeb3b;
-    --color-amber: #ffc107;
-    --color-orange: #ff9800;
-    --color-deep-orange: #ff5722;
-    --color-brown: #795548;
-    --color-grey: #9e9e9e;
-    --color-blue-grey: #607d8b;
-
-    /* Warna Status */
-    --color-success: #2ecc71;
-    --color-info: #3498db;
-    --color-warning: #f39c12;
-    --color-danger: #e74c3c;
-
-    /* Warna Transparan */
-    --color-transparent: transparent;
-    --color-black-transparent: rgba(0, 0, 0, 0.5);
-    --color-white-transparent: rgba(255, 255, 255, 0.5);
-
-    /* Font Family */
-    --font-primary: "Roboto", sans-serif;
-    --font-secondary: "Open Sans", sans-serif;
-    --font-mono: "Courier New", monospace;
-
-    /* Font Size */
-    --text-xs: 0.75rem; /* 12px */
-    --text-sm: 0.875rem; /* 14px */
-    --text-base: 1rem; /* 16px */
-    --text-lg: 1.125rem; /* 18px */
-    --text-xl: 1.25rem; /* 20px */
-
-    /* Font Weight */
-    --font-light: 300;
-    --font-regular: 400;
-    --font-medium: 500;
-    --font-bold: 700;
-
-    /* Spacing */
-    --space-1: 0.25rem; /* 4px */
-    --space-2: 0.5rem; /* 8px */
-    --space-3: 0.75rem; /* 12px */
-    --space-4: 1rem; /* 16px */
-    --space-5: 1.5rem; /* 24px */
-
-    /* Container Width */
-    --container-sm: 640px;
-    --container-md: 768px;
-    --container-lg: 1024px;
-    --container-xl: 1280px;
-
-    /* Border Radius */
-    --rounded-sm: 0.125rem; /* 2px */
-    --rounded-md: 0.25rem; /* 4px */
-    --rounded-lg: 0.5rem; /* 8px */
-    --rounded-full: 9999px;
-
-    /* Breakpoints */
-    --bp-mobile: 480px;
-    --bp-tablet: 768px;
-    --bp-desktop: 1024px;
-    --bp-wide: 1200px;
-
-    /* Box Shadows */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
-
-    /* Transitions */
-    --transition-fast: 0.15s ease;
-    --transition-medium: 0.3s ease;
-    --transition-slow: 0.5s ease;
-
-    /* Z-Index */
-    --z-index-dropdown: 100;
-    --z-index-sticky: 200;
-    --z-index-modal: 300;
-    --z-index-popover: 400;
-    --z-index-toast: 500;
+    /* Variabel global untuk tema aktif */
+    --color1: var(--template1-color1);
+    --color2: var(--template1-color2);
+    --color3: var(--template1-color3);
+    --color4: var(--template1-color4);
+    --color5: var(--template1-color5);
+    --color6: var(--template1-color6);
 }
 
+/* Class Template Temaaa🔥🔥🔥 */
+
+/* Class untuk template 1 (default) */
+.template-1 {
+    --color1: var(--template1-color1);
+    --color2: var(--template1-color2);
+    --color3: var(--template1-color3);
+    --color4: var(--template1-color4);
+    --color5: var(--template1-color5);
+    --color6: var(--template1-color6);
+}
+
+/* Class untuk template 2 */
+.template-2 {
+    --color1: var(--template2-color1);
+    --color2: var(--template2-color2);
+    --color3: var(--template2-color3);
+    --color4: var(--template2-color4);
+    --color5: var(--template2-color5);
+    --color6: var(--template2-color6);
+}
+
+::-webkit-input-placeholder {
+    color: white;
+}
+
+/* Scrollbar Style */
 ::-webkit-scrollbar {
     width: 12px;
 }
 ::-webkit-scrollbar-track {
-    background: var(--black1); /* Dark track */
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1); /* Soft inner shadow */
+    background: var(--color2);
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--chocolate-brown); /* Thumb */
+    background: var(--color1);
     border-radius: 10px;
-    border: 1px solid var(--black1); /* Buat efek thumb timbul */
+    border: 1px solid var(--color2);
     transition: background 0.3s ease;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #3c2e2e; /* Lebih gelap saat hover */
+    background: var(--color1);
+}
+
+/* Theme Panel */
+.theme-panel {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color1);
+    padding: 32px 0 24px 0;
+    z-index: 2000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    animation: themePanelFadeIn 0.2s;
+}
+@keyframes themePanelFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.theme-panel.active {
+    display: block;
+}
+.theme-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px 16px 40px;
+    font-size: 1.2rem;
+    color: #fffbe7;
+    font-weight: bold;
+}
+.theme-panel-close {
+    background: none;
+    border: none;
+    color: #fffbe7;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+.theme-options {
+    display: flex;
+    gap: 24px;
+    padding: 0 40px;
+    overflow-x: auto;
+}
+.theme-option {
+    background: #fff;
+    border: 3px solid transparent;
+    border-radius: 12px;
+    padding: 16px 18px 10px 18px;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: border 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    margin-bottom: 8px;
+}
+.theme-option.selected,
+.theme-option:focus {
+    border: 3px solid #e2b8a3;
+    position: relative;
+}
+.theme-option.selected::after {
+    content: "✓";
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 1.2rem;
+    color: #e2b8a3;
+    background: #fff;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+.theme-option-preview {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+.theme-option-preview span {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid #eee;
+}
+.theme-option-label {
+    font-size: 1rem;
+    color: #4b3936;
+    font-weight: 500;
+    text-align: center;
 }
 
 body {
     min-height: 100vh;
     overflow-x: hidden;
-    background-color: #d9d9d9;
+    background-color: var(--color1);
+    color: var(--color5);
 }
 
 .container {
@@ -165,8 +217,8 @@ body {
     position: fixed;
     width: 300px;
     height: 100%;
-    background: var(--chocolate-brown);
-    border-left: 10px solid var(--chocolate-brown);
+    background: var(---color1);
+    border-left: 10px solid var(--color1);
     transition: 0.5s;
     overflow: hidden;
 }
@@ -191,7 +243,7 @@ body {
 
 .sidebar ul li:hover,
 .sidebar ul li.hovered {
-    background-color: #d9d9d9;
+    background-color: var(--color6);
 }
 
 .sidebar ul li:nth-child(1) {
@@ -205,11 +257,11 @@ body {
     width: 100%;
     display: flex;
     text-decoration: none;
-    color: var(--white);
+    color: var(--color5);
 }
 .sidebar ul li:hover a,
 .sidebar ul li.hovered a {
-    color: #543f3f;
+    color: var(--color1);
 }
 
 .sidebar ul li a .icon {
@@ -245,7 +297,7 @@ body {
     height: 50px;
     background-color: transparent;
     border-radius: 50%;
-    box-shadow: 35px 35px 0 10px #d9d9d9;
+    box-shadow: 35px 35px 0 10px var(--color6);
     pointer-events: none;
 }
 .sidebar ul li:hover a::after,
@@ -258,7 +310,7 @@ body {
     height: 50px;
     background-color: transparent;
     border-radius: 50%;
-    box-shadow: 35px -35px 0 10px #d9d9d9;
+    box-shadow: 35px -35px 0 10px var(--color6);
     pointer-events: none;
 }
 
@@ -269,7 +321,7 @@ body {
     width: calc(100% - 300px);
     left: 300px;
     min-height: 100vh;
-    background: #d9d9d9;
+    background: var(--color6);
     transition: 0.5s;
 }
 .main.active {
@@ -281,7 +333,7 @@ body {
     width: 100%;
     height: 60px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     padding: 0 10px;
 }
@@ -291,17 +343,15 @@ body {
     width: 60px;
     height: 60px;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     font-size: 2.5rem;
     cursor: pointer;
-    color: var(--chocolate-brown);
+    color: var(--color1);
 }
 
 .search {
     position: relative;
-    width: 400px;
-    margin: 0 auto;
     left: 0;
     right: 0;
 }
@@ -313,14 +363,15 @@ body {
 
 .search label input {
     width: 100%;
-    height: 40px;
+    height: 44px;
     border-radius: 40px;
     padding: 5px 20px;
     padding-left: 35px;
     font-size: 18px;
     outline: none;
     box-shadow: var(--shadow3D);
-    border: 1.8px solid var(--chocolate-brown);
+    background-color: var(--color1);
+    border: 1.8px;
 }
 
 .search label ion-icon {
@@ -328,7 +379,29 @@ body {
     top: 0;
     left: 10px;
     font-size: 1.2rem;
-    color: var(--color-white);
+    color: var(--color5);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    background: var(--color2);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: var(--shadow3D);
+    cursor: pointer;
+    margin-left: 16px;
+    font-size: 1.5rem;
+    transition: background 0.2s;
+    z-index: 1100;
+}
+.theme-toggle-btn:hover {
+    background: var(--color1);
 }
 
 /* Hapus/desable desain .user dan .user img */
@@ -338,7 +411,7 @@ body {
 }
 
 /* ======================= Cards ====================== */
-.cardBox {
+.card-box {
     position: relative;
     width: 100%;
     padding: 20px;
@@ -347,9 +420,9 @@ body {
     grid-gap: 30px;
 }
 
-.cardBox .card {
+.card-box .card {
     position: relative;
-    background: #543f3f;
+    background: var(--color1);
     padding: 20px;
     border-radius: 20px;
     display: flex;
@@ -359,22 +432,22 @@ body {
     overflow: hidden; /* Penting agar icon bisa keluar card */
 }
 
-.cardBox .card .numbers {
+.card-box .card .numbers {
     position: relative;
     font-weight: 500;
     font-size: 2.5rem;
     color: #fff;
 }
 
-.cardBox .card .cardName {
+.card-box .card .card-name {
     color: #fff;
     font-size: 1.1rem;
     margin-top: 5px;
 }
 
-.cardBox .card .iconBx ion-icon {
+.card-box .card .icon-bx ion-icon {
     position: absolute;
-    bottom: -35px; /* Icon keluar ke atas card */
+    bottom: -35px;
     right: -27px;
     z-index: 2;
     font-size: 5rem;
@@ -384,21 +457,21 @@ body {
     transition: box-shadow 0.3s cubic-bezier(0.4, 2, 0.6, 1);
 }
 
-.cardBox .card:hover {
-    background: #6a5151;
+.card-box .card:hover {
+    background: var(--color2);
 }
-.cardBox .card:hover .numbers,
-.cardBox .card:hover .cardName,
-.cardBox .card:hover .iconBx {
-    color: #fff;
+.card-box .card:hover .numbers,
+.card-box .card:hover .card-name,
+.card-box .card:hover .icon-bx {
+    color: var(--color5);
 }
 
-.cardBox .card .iconBx {
+.card-box .card .icon-bx {
     transition: transform 6s cubic-bezier(0.4, 2, 0.6, 1),
         box-shadow 8s cubic-bezier(0.4, 2, 0.6, 1);
 }
 
-.cardBox .card:hover .iconBx {
+.card-box .card:hover .icon-bx {
     transform: perspective(300px) rotateX(-15deg) rotateZ(-8deg)
         translateY(-10px) scale(1.15);
     box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.18);
@@ -406,40 +479,40 @@ body {
 
 /* ================== Main  ============== */
 .details {
-    position: relative;
-    width: 100%;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 30px;
+    position: var(--template2-content-possition);
+    width: var(--template2-content-width);
+    padding: var(--template2-content-padding);
+    display: var(--template2-content-display);
+    grid-template-columns: var(--template2-content-grid-template-columns);
+    grid-gap: var(--template1-content-grid-gap);
     /* margin-top: 10px; */
 }
 
-.details .recentOrders {
+.details .recent-orders {
     position: relative;
     display: grid;
     min-height: 500px;
-    background: var(--chocolate-brown);
+    background: var(--color1);
     padding: 20px;
     box-shadow: var(--shadow3D);
     border-radius: 20px;
 }
 
-.details .cardHeader {
+.details .card-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
-.cardHeader h2 {
+.card-header h2 {
     font-weight: 600;
-    color: var(--white);
+    color: var(--color5);
 }
-.cardHeader .btn {
+.card-header .btn {
     position: relative;
     padding: 5px 10px;
-    background: var(--black1);
+    background: var(--color2);
     text-decoration: none;
-    color: var(--white);
+    color: var(--color5);
     border-radius: 6px;
 }
 
@@ -451,41 +524,41 @@ body {
 .details table thead td {
     font-weight: 600;
 }
-.details .recentOrders table tr {
-    color: var(--white);
+.details .recent-orders table tr {
+    color: var(--color5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.811);
 }
-.details .recentOrders table tr:last-child {
+.details .recent-orders table tr:last-child {
     border-bottom: none;
 }
-.details .recentOrders table tbody tr:hover {
-    background: var(--black1);
-    color: var(--black2);
+.details .recent-orders table tbody tr:hover {
+    background: var(--color2);
+    color: var(--color3);
 }
-.details .recentOrders table tr td {
+.details .recent-orders table tr td {
     padding: 10px;
 }
-.details .recentOrders table tr td:last-child {
+.details .recent-orders table tr td:last-child {
     text-align: end;
 }
-.details .recentOrders table tr td:nth-child(2) {
+.details .recent-orders table tr td:nth-child(2) {
     text-align: end;
 }
-.details .recentOrders table tr td:nth-child(3) {
+.details .recent-orders table tr td:nth-child(3) {
     text-align: center;
 }
 .status.selesai {
     padding: 2px 4px;
     background: #0a652b;
-    color: var(--white);
+    color: var(--color5);
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
 }
-.status.belumKembali {
+.status.belum-kembali {
     padding: 2px 4px;
     background: #facc15;
-    color: var(--white);
+    color: var(--color5);
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
@@ -493,7 +566,7 @@ body {
 .status.terlambat {
     padding: 2px 4px;
     background: #f00;
-    color: var(--white);
+    color: var(--color5);
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
@@ -501,29 +574,29 @@ body {
 .status.dibatalkan {
     padding: 2px 4px;
     background: #9ca3af;
-    color: var(--white);
+    color: var(--color5);
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
 }
 
-.recentCustomers {
+.recent-customers {
     position: relative;
     display: grid;
     min-height: 500px;
     padding: 20px;
-    background: var(--chocolate-brown);
+    background: var(--color1);
     box-shadow: var(--shadow3D);
     border-radius: 20px;
 }
-.recentCustomers .imgBx {
+.recent-customers .img-bx {
     position: relative;
     width: 40px;
     height: 40px;
     border-radius: 50px;
     overflow: hidden;
 }
-.recentCustomers .imgBx img {
+.recent-customers .img-bx img {
     position: absolute;
     top: 0;
     left: 0;
@@ -531,36 +604,33 @@ body {
     height: 100%;
     object-fit: cover;
 }
-.recentCustomers table tr td {
+.recent-customers table tr td {
     padding: 12px 10px;
 }
-.recentCustomers table tr td h4 {
+.recent-customers table tr td h4 {
     font-size: 16px;
     font-weight: 500;
     line-height: 1.2rem;
-    color: var(--white);
+    color: var(--color5);
 }
-.recentCustomers table tr td h4 span {
+.recent-customers table tr td h4 span {
     font-size: 14px;
-    color: var(--white);
+    color: var(--color5);
 }
-.recentCustomers table tr:hover {
-    background: var(--black1);
-    color: var(--black2);
-}
-.recentCustomers table tr:hover td h4 span {
-    color: var(--white);
+.recent-customers table tr:hover {
+    background: var(--color2);
+    color: var(--color3);
 }
 
 /* ===================== Produk ================= */
 
 .products {
-    position: relative;
-    width: 100%;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 15px;
+    position: var(--template1-content-possition);
+    width: var(--template1-content-width);
+    padding: var(--template1-content-padding);
+    display: var(--template1-content-display);
+    grid-template-columns: var(--template1-content-grid-template-columns);
+    grid-gap: var(--template1-content-grid-gap);
 }
 
 /* Bungkus Header Produk */
@@ -590,12 +660,12 @@ body {
 /* Select Style */
 .select-wrapper select {
     height: 44px;
-    width: 80px; /* Ukuran kecil sesuai wrapper */
+    width: 80px;
     font-size: 1.1rem;
-    border: 1.5px solid var(--chocolate-brown);
+    border: 1.5px solid var(--color1);
     border-radius: 10px;
-    background-color: var(--chocolate-brown);
-    color: var(--white);
+    background-color: var(--color1);
+    color: var(--color5);
     appearance: none;
     cursor: pointer;
     outline: none;
@@ -608,8 +678,8 @@ body {
 
 /* Hover dan Focus pada Select */
 .select-wrapper select:hover {
-    background-color: var(--black1);
-    color: var(--white);
+    background-color: var(--color2);
+    color: var(--color5);
 }
 .select-wrapper select:focus {
     box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.4);
@@ -617,8 +687,8 @@ body {
 
 /* Option Style */
 .select-wrapper select option {
-    color: var(--white);
-    background: var(--chocolate-brown);
+    color: var(--color5);
+    background: var(--color1);
     text-align: center;
     box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.4);
     font-size: 16px;
@@ -626,11 +696,10 @@ body {
     transition: background 0.2s, color 0.2s;
 }
 
-/* Hover & Selected Option (hanya efektif di Firefox) */
 .select-wrapper select option:hover,
 .select-wrapper select option:checked {
-    background-color: var(--black1);
-    color: var(--white);
+    background-color: var(--color2);
+    color: var(--color5);
 }
 /* Icon pada Select */
 .select-wrapper ion-icon {
@@ -639,7 +708,7 @@ body {
     left: 67px;
     transform: translateY(-50%);
     font-size: 1.3rem;
-    color: var(--white);
+    color: var(--color5);
     pointer-events: none;
     transition: color 0.2s;
 }
@@ -653,10 +722,10 @@ body {
     padding: 0 12px;
     font-size: 1.1rem;
     font-family: "Ubuntu", sans-serif;
-    border: 1.5px solid var(--chocolate-brown);
+    border: 1.5px solid var(--color1);
     border-radius: 10px;
-    background-color: var(--chocolate-brown);
-    color: var(--white);
+    background-color: var(--color1);
+    color: var(--color5);
     text-decoration: none;
     cursor: pointer;
     box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.4);
@@ -665,12 +734,12 @@ body {
 
 .add-product-btn ion-icon {
     font-size: 1.4rem;
-    color: var(--white);
+    color: var(--color5);
 }
 
 .add-product-btn:hover {
-    background-color: var(--black1);
-    color: var(--white);
+    background-color: var(--color2);
+    color: var(--color5);
 }
 
 /* Pop Up */
@@ -686,7 +755,7 @@ body {
 }
 
 .popup-box {
-    background-color: #543f3f;
+    background-color: var(--color1);
     width: 900px;
     display: flex;
     padding: 40px;
@@ -720,10 +789,16 @@ body {
     gap: 15px;
 }
 
+.form-flex {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+}
+
 input,
 textarea {
-    background-color: #6a5151;
-    color: white;
+    background-color: var(--color2);
+    color: var(--color5);
     border: none;
     border-radius: 10px;
     padding: 12px;
@@ -744,13 +819,14 @@ textarea {
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
+    margin-left: auto;
     gap: 30px;
 }
 
 /* Drop Area */
 .drop-area {
-    background-color: #6a5151;
-    border: 2px dashed var(--black2);
+    background-color: var(--color2);
+    border: 2px dashed var(--color3);
     border-radius: 10px;
     padding: 30px 20px;
     text-align: center;
@@ -784,7 +860,7 @@ textarea {
     position: relative;
     display: grid;
     min-height: 500px;
-    background: var(--chocolate-brown);
+    background: var(--color1);
     padding: 20px;
     box-shadow: var(--shadow3D);
     border-radius: 20px;
@@ -799,15 +875,15 @@ textarea {
     font-weight: 600;
 }
 .products .table-products table tr {
-    color: var(--white);
+    color: var(--color5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.811);
 }
 .products .table-products table tr:last-child {
     border-bottom: none;
 }
 .products .table-products table tbody tr:hover {
-    background: var(--black1);
-    color: var(--black2);
+    background: var(--color2);
+    color: var(--color3);
 }
 .products .table-products table tr td {
     padding: 10px;
@@ -825,13 +901,13 @@ textarea {
 
 .edit-btn,
 .delete-btn {
-    background-color: var(--black1);
+    background-color: var(--color2);
     border: none;
     border-radius: 8px;
     padding: 8px 12px;
     margin: 2px;
     cursor: pointer;
-    color: var(--white);
+    color: var(--color5);
     box-shadow: var(--shadow3D);
     transition: background-color 0.3s, transform 0.2s;
     align-items: center;
@@ -846,18 +922,18 @@ textarea {
 
 .edit-btn:hover,
 .delete-btn:hover {
-    background-color: #503636; /* sedikit lebih gelap dari black1 */
+    background-color: var(--color1);
     transform: translateY(-2px);
 }
 
 /* ===================== Transaction ===================== */
 .transaction {
-    position: relative;
-    width: 100%;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 15px;
+    position: var(--template1-content-possition);
+    width: var(--template1-content-width);
+    padding: var(--template1-content-padding);
+    display: var(--template1-content-display);
+    grid-template-columns: var(--template1-content-grid-template-columns);
+    grid-gap: var(--template1-content-grid-gap);
 }
 .transaction .transaction-header {
     display: flex;
@@ -866,7 +942,8 @@ textarea {
     width: 100%;
 }
 
-.transaction .cardHeaderTransaction {
+.transaction .card-header-transaction {
+    /*Navtab*/
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -877,30 +954,8 @@ textarea {
     justify-self: flex-end;
 }
 
-.transaction-header .export-button {
-    background-color: var(--chocolate-brown);
-    color: var(--white);
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    box-shadow: var(--shadow3D);
-    height: 44px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-}
-
-input[type="date"] {
-    background-color: var(--chocolate-brown);
-    color: #fff;
-}
-
 .transaction-header .export-button:hover {
-    background-color: var(--black1);
+    background-color: var(--color2);
 }
 
 .transaction-header .export-button svg {
@@ -911,12 +966,61 @@ input[type="date"] {
     margin-bottom: 2px;
 }
 
+.transaction-header .export-button {
+    margin-left: auto;
+    background-color: var(--color1);
+    color: var(--color5);
+    padding: 0 20px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: var(--shadow3D);
+    height: 44px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.add-new-transaction-btn {
+    margin-left: auto;
+    align-items: center;
+    display: flex;
+    height: 44px;
+    padding: 0 12px;
+    font-size: 1rem;
+    border: 1.5px solid var(--color1);
+    border-radius: 10px;
+    background-color: var(--color1);
+    color: var(--color5);
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.4);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.add-new-transaction-btn ion-icon {
+    font-size: 1.4rem;
+    color: var(--color5);
+    margin-right: 8px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+input[type="date"] {
+    background-color: var(--color1);
+    color: var(--color5);
+    box-shadow: var(--shadow3D);
+}
+
 .tab-nav {
     width: 500px;
     height: 44px;
     display: flex;
     justify-content: space-around;
-    background: var(--white);
+    background: var(--color5);
     padding: 8px 10px;
     border-radius: 10px;
     flex-wrap: wrap;
@@ -926,7 +1030,7 @@ input[type="date"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--chocolate-brown);
+    color: var(--color1);
     background-color: transparent;
     border-radius: 8px;
     text-decoration: none;
@@ -940,22 +1044,22 @@ input[type="date"] {
 
 .tab-link:hover {
     padding: 10px 12px;
-    background-color: var(--black1);
-    color: var(--white);
+    background-color: var(--color2);
+    color: var(--color5);
 }
 
 .tab-link.active {
-    background-color: var(--black1);
-    color: var(--white);
+    background-color: var(--color2);
+    color: var(--color5);
     font-weight: bold;
 }
 
-/* Tabel Produk */
+/* ================= Table Produk =================== */
 .transaction .table-transaction {
     position: relative;
     display: grid;
     min-height: 500px;
-    background: var(--chocolate-brown);
+    background: var(--color1);
     padding: 20px;
     box-shadow: var(--shadow3D);
     border-radius: 20px;
@@ -970,7 +1074,7 @@ input[type="date"] {
     font-weight: 600;
 }
 .transaction .table-transaction table tr {
-    color: var(--white);
+    color: var(--color5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.811);
 }
 .transaction .table-transaction table tr:last-child {
@@ -978,7 +1082,7 @@ input[type="date"] {
 }
 .transaction .table-transaction table tbody tr:hover {
     background: #6a515157;
-    color: var(--black2);
+    color: var(--color3);
 }
 .transaction .table-transaction table tr td {
     padding: 10px;
@@ -994,11 +1098,10 @@ input[type="date"] {
     text-align: center;
 }
 
-/* Select box styling */
 .transaction .table-transaction table select {
-    background: var(--black1);
-    color: var(--white);
-    border: 2px solid var(--chocolate-brown, #543f3f);
+    background: var(--color2);
+    color: var(--color5);
+    border: 2px solid var(--color1, #543f3f);
     border-radius: 8px;
     padding: 6px 18px;
     font-size: 1rem;
@@ -1008,20 +1111,38 @@ input[type="date"] {
 }
 
 .transaction .table-transaction table select:focus {
-    border-color: var(--black1);
+    border-color: var(--color2);
 }
 
-/* Option styling */
 .transaction .table-transaction table select option {
-    background: var(--black1);
-    color: var(--white);
+    background: var(--color2);
+    color: var(--color5);
     padding: 8px;
 }
 
-/* Optional: Style selected option */
 .transaction .table-transaction table select option:checked {
-    background: var(--chocolate-brown, #543f3f);
-    color: var(--white, #fff);
+    background: var(--color1, #543f3f);
+    color: var(--color5);
+}
+
+/* ===================== New Transaksi ===================== */
+.new-transaksi {
+    position: var(--template1-content-possition);
+    width: var(--template1-content-width);
+    padding: var(--template1-content-padding);
+    display: var(--template1-content-display);
+    grid-template-columns: var(--template1-content-grid-template-columns);
+    grid-gap: var(--template1-content-grid-gap);
+}
+
+/* ===================== Customer =========================== */
+.customer {
+    position: var(--template1-content-possition);
+    width: var(--template1-content-width);
+    padding: var(--template1-content-padding);
+    display: var(--template1-content-display);
+    grid-template-columns: var(--template1-content-grid-template-columns);
+    grid-gap: var(--template1-content-grid-gap);
 }
 
 /* ====================== Responsive Design ========================== */
@@ -1040,7 +1161,7 @@ input[type="date"] {
     .main.active {
         left: 300px;
     }
-    .cardBox {
+    .card-box {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1073,10 +1194,10 @@ input[type="date"] {
     .details {
         grid-template-columns: 1fr;
     }
-    .recentOrders {
+    .recent-orders {
         overflow-x: auto;
     }
-    .status.inProgress {
+    .status.in-progress {
         white-space: nowrap;
     }
 
@@ -1098,11 +1219,11 @@ input[type="date"] {
 }
 
 @media (max-width: 480px) {
-    .cardBox {
+    .card-box {
         grid-template-columns: repeat(2, 2fr);
         justify-items: center;
     }
-    .cardBox .card {
+    .card-box .card {
         width: 100%;
         min-width: 0;
         max-width: 200px;
@@ -1117,19 +1238,19 @@ input[type="date"] {
         border-radius: 20px;
         box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     }
-    .cardBox .card .numbers {
+    .card-box .card .numbers {
         font-size: 1.2rem;
     }
-    .cardBox .card .numbers p {
+    .card-box .card .numbers p {
         display: none;
     }
-    .cardBox .card .iconBx {
+    .card-box .card .icon-bx {
         display: none;
     }
-    .cardBox .card .cardName {
+    .card-box .card .card-name {
         font-size: 1rem;
     }
-    .cardHeader h2 {
+    .card-header h2 {
         font-size: 20px;
     }
     .user {

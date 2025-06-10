@@ -19,7 +19,7 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         redirect()->route('transaction.index');
-    }
+    }   
 
     public function edit($id)
     {
@@ -36,3 +36,4 @@ class TransactionController extends Controller
         return redirect()->route('transaction.index');
     }
 }
+
