@@ -25,8 +25,6 @@
 
     </div>
 
-
-
     <div class="table-products">
         <table id="productsTable">
             <thead>
@@ -54,7 +52,6 @@
                         <a href="{{ route('item.edit', $item->id) }}"><button class="edit-btn"><ion-icon name="create-outline"></ion-icon></i></button></a>
                     </td>
                     <td>
-
                         <button class="delete-btn" onclick="delete_data({{ $item->id }})" href="javascript:void(0)"><ion-icon name="trash-outline"></ion-icon></button>
                     </td>
                 </tr>
