@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="products">
-    
+
     <div class="products-header">
         <div class="select-wrapper">
             <select class="Show" id="showSelect">
@@ -29,30 +29,30 @@
         <div class="popup-box">
             <a href="{{ route ('item.index') }}"><button class="close-btn" onclick="closePopup()">✕</button></a>
             <form class="form-flex" action="{{ route('item.update', $item->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('put')
-            <div class="form-left"> 
-                <label for="nama">Edit Nama Produk :</label>
-                <input value="{{ $item->name }}" type="text" id="nama" name="name" placeholder="Masukan Nama Produk">
+                @csrf
+                @method('put')
+                <div class="form-left">
+                    <label for="nama">Edit Nama Produk :</label>
+                    <input value="{{ $item->name }}" type="text" id="nama" name="name" placeholder="Masukan Nama Produk">
 
-                <label for="harga">Edit Harga Produk :</label>
-                <input value="{{ $item->price }}" type="text" id="harga" name="price" placeholder="Masukan Harga Produk">
+                    <label for="harga">Edit Harga Produk :</label>
+                    <input value="{{ $item->price }}" type="text" id="harga" name="price" placeholder="Masukan Harga Produk">
 
-                <label for="deskripsi">Edit Deksripsi Produk :</label>
-                <textarea id="deskripsi" name="description" placeholder="Masukan Deksripsi Produk">{{ $item->description }}</textarea>
-            </div>
-
-            <div class="form-right" method="">
-                <div class="drop-area" id="drop_area">
-                    <img src="{{ asset('icon/icons8-drag-and-drop-48.png') }}" alt="icon" />
-                    <p>Drop/Drag an image Produk</p>
-                    <!-- <input type="file" id="fileInput" accept="image/*" hidden> -->
-                    <input type="file" name="file_input" id="file_input" onchange="this.form.submit()" accept="image/*" hidden>
-                    <div id="preview_container"></div>
+                    <label for="deskripsi">Edit Deksripsi Produk :</label>
+                    <textarea id="deskripsi" name="description" placeholder="Masukan Deksripsi Produk">{{ $item->description }}</textarea>
                 </div>
 
-                <button type="submit" class="add-btn">Edit Produk</button>
-            </div>
+                <div class="form-right" method="">
+                    <div class="drop-area" id="drop_area">
+                        <img src="{{ asset('icon/icons8-drag-and-drop-48.png') }}" alt="icon" />
+                        <p>Drop/Drag an image Produk</p>
+                        <!-- <input type="file" id="fileInput" accept="image/*" hidden> -->
+                        <input type="file" name="file_image" id="file_input" onchange="this.form.submit()" accept="image/*" hidden>
+                        <div id="preview_container"></div>
+                    </div>
+
+                    <button type="submit" class="add-btn">Edit Produk</button>
+                </div>
             </form>
         </div>
     </div>
@@ -78,7 +78,7 @@
                     <td>Rp.{{ $produk->price }}</td>
                     <td>{{ $produk->description }}</td>
                     <td>
-                        <img src="{{ asset('img/xiaomi14T.png') }}" alt="produk" class="product-img" style="width: 100px; height: 50px;">
+                        <img src="{{ asset('img/xiaomi14T.png') }}" alt="produk" class="product-img" style="width: 100px; height: 100px; object-fit:contain;">
                     </td>
                     <td>
                         <a href=""><button class="edit-btn"><ion-icon name="create-outline"></ion-icon></i></button></a>

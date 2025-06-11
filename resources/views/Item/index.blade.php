@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="products">
-    
+
     <div class="products-header">
         <div class="select-wrapper">
             <select class="Show" id="showSelect">
@@ -48,7 +48,7 @@
                     <td>Rp. {{ $item->price }}</td>
                     <td>{{$item->description }}</td>
                     <td>
-                        <img src="{{ asset('img/xiaomi14T.png') }}" alt="produk" class="product-img" style="width: 100px; height: 50px;">
+                        <img src="{{ Storage::url($item->image) }}" alt="produk" class="product-img" style="width: 100px; height: 50px;">
                     </td>
                     <td>
                         <a href="{{ route('item.edit', $item->id) }}"><button class="edit-btn"><ion-icon name="create-outline"></ion-icon></i></button></a>

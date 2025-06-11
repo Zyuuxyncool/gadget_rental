@@ -12,8 +12,8 @@ class ItemService extends Service
     {
         $item_service = Item::orderBy('id');
 
-        $name_item = $params['name'] ?? '';
-        if ($name_item !== '') $item_service = $item_service->where('name', 'like', "%$name_item%");
+        $name = $params['name'] ?? '';
+        if ($name !== '') $item_service = $item_service->where('name', 'like', "%$name%");
 
         $item_service = $this->searchFilter($params, $item_service, []);
         return $this->searchResponse($params, $item_service);

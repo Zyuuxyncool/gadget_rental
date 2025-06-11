@@ -46,8 +46,8 @@
                     <div class="drop-area" id="drop_area">
                         <img src="{{ asset('icon/icons8-drag-and-drop-48.png') }}" alt="icon" />
                         <p>Drop/Drag an image Produk</p>
-                        <!-- <input type="file" id="fileInput" accept="image/*" hidden> -->
-                        <input type="file" name="file_input" id="file_input" onchange="this.form.submit()" accept="image/*" hidden>
+                        <!-- <input type="file" id="fileImage" accept="image/*" hidden> -->
+                        <input type="file" name="file_image" id="file_input" onchange="this.form.submit()" accept="image/*" hidden>
                         <div id="preview_container"></div>
                     </div>
                     <button type="submit" class="add-btn">ADD Produk</button>
@@ -98,7 +98,7 @@
 @push('scripts')
 <script>
     const dropArea = document.getElementById("drop_area");
-    const fileInput = document.getElementById("file_input");
+    const fileImage = document.getElementById("file_input");
     const previewContainer = document.getElementById("preview_container");
 
     // Mencegah perilaku default untuk event drag and drop
@@ -117,9 +117,9 @@
     }
 
     // Allow Touch, Untuk Membuka Peiliahan Gambar
-    dropArea.addEventListener("click", () => fileInput.click()); //click Input
-    fileInput.addEventListener("change", () => {
-        const file = fileInput.files[0];
+    dropArea.addEventListener("click", () => fileImage.click()); //click Input
+    fileImage.addEventListener("change", () => {
+        const file = fileImage.files[0];
         if (file && file.type.startsWith("image/")) {
             previewImage(file);
         }
