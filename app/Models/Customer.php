@@ -18,4 +18,12 @@ class Customer extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+
+    public static function boot()
+    {
+        Parent::boot();
+        static::creating(function($customer){
+            $customer->no_id = mt_rand(100000000, 999999999);
+        });
+    }
 }

@@ -15,7 +15,12 @@
             </select>
             <ion-icon id="selectIcon" name="chevron-down-circle-outline"></ion-icon>
         </div>
-
+            <form class="search" method="GET" action="">
+                <label>
+                    <input name="name" class="search" type="text" placeholder="Search here for Item" >
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </form>
         <div class="add-product">
             <a href="{{ route('item.create') }}" class="add-product-btn">
                 <ion-icon name="add-circle-outline"></ion-icon>
@@ -43,16 +48,17 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->name }}</td>
-                    <td>Rp. {{ $item->price }}</td>
+                    <td>Rp. {{ number_format($item->price, 0 , ',', '.') }}</td>
                     <td>{{$item->description }}</td>
                     <td>
-                        <img src="{{ Storage::url($item->image) }}" alt="produk" class="product-img" style="width: 100px; height: 50px;">
+                        <img src="{{ Storage::url($item->image) }}" alt="produk" class="product-img" style="width: 100px; height: 50px; object-fit:cover;">
                     </td>
                     <td>
                         <a href="{{ route('item.edit', $item->id) }}"><button class="edit-btn"><ion-icon name="create-outline"></ion-icon></i></button></a>
                     </td>
                     <td>
-                        <button class="delete-btn" onclick="delete_data({{ $item->id }})" href="javascript:void(0)"><ion-icon name="trash-outline"></ion-icon></button>
+                        <button class="delete-btn" onclick="delete_data({{ $item->id }})"><ion-icon name="trash-outline"></ion-icon></button>
+                        <!-- href="javascript:void(0)" -->
                     </td>
                 </tr>
                 @endforeach
@@ -76,7 +82,9 @@
             alert('Berhasil dihapus');
             window.location.reload();
         });
-    }
+    };
+
+    
     // document.getElementById('openModalBtn').onclick = function(e) {
     //     e.preventDefault();
     //     document.getElementById('addProductModal').style.display = 'block';

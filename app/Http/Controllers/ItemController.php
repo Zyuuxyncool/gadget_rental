@@ -10,16 +10,15 @@ use App\Services\ImageService;
 class ItemController extends Controller
 {
     protected $itemService;
-
     public function __construct()
     {
         $this->itemService = new ItemService();
     }
 
 
-    public function index()
+    public function index(request $request)
     {
-        $items = $this->itemService->search();
+        $items = $this->itemService->search($request);
         return view('item.index', compact('items'));
     }
 

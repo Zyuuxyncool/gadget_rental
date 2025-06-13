@@ -11,8 +11,11 @@ class CustomerService extends Service
     {
         $customer_service = Customer::orderBy('id');
 
-        $name_customer = $params['name'] ?? '';
-        if ($name_customer !== '') $customer_service = $customer_service->where('name', 'like', "%name_customer%");
+        $name = $params['name'] ?? '';
+        if ($name !== '') $customer_service = $customer_service->where('name', 'like', "%$name%");
+
+        $no_id = $params['no_id'] ?? '';
+        if ($no_id !== '') $customer_service = $customer_service->where('no_id', 'like', "$no_id");
 
         $customer_service = $this->searchFilter($params, $customer_service, []);
         return $this->searchResponse($params, $customer_service);

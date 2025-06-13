@@ -33,10 +33,10 @@
                 @csrf
                 <div class="form-left">
                     <label for="nama">Nama Produk :</label>
-                    <input type="text" id="nama" name="name" placeholder="Masukan Nama Produk">
+                    <input type="" id="nama" name="name" placeholder="Masukan Nama Produk">
 
                     <label for="harga">Harga Produk :</label>
-                    <input type="text" id="harga" name="price" placeholder="Masukan Harga Produk">
+                    <input type="" id="harga" name="price" placeholder="Masukan Harga Produk" oninput="formatRupiah(this)">
 
                     <label for="deskripsi">Deksripsi Produk :</label>
                     <textarea id="deskripsi" name="description" placeholder="Masukan Deksripsi Produk"></textarea>
@@ -97,9 +97,9 @@
 
 @push('scripts')
 <script>
-    const dropArea = document.getElementById("drop_area");
-    const fileImage = document.getElementById("file_input");
-    const previewContainer = document.getElementById("preview_container");
+    const dropArea = document.getElementById("drop_area"); //div drop_area
+    const fileImage = document.getElementById("file_input"); //id input
+    const previewContainer = document.getElementById("preview_container"); //[review_container]
 
     // Mencegah perilaku default untuk event drag and drop
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
@@ -116,7 +116,6 @@
         }
     }
 
-    // Allow Touch, Untuk Membuka Peiliahan Gambar
     dropArea.addEventListener("click", () => fileImage.click()); //click Input
     fileImage.addEventListener("change", () => {
         const file = fileImage.files[0];
@@ -126,7 +125,6 @@
     });
 
     function previewImage(file) {
-        // Hapus Elemen Gambar dan paragraph asli
         const dropImage = dropArea.querySelector('img');
         const dropText = dropArea.querySelector('p');
         if (dropImage) dropImage.remove();
@@ -139,6 +137,12 @@
 
         reader.readAsDataURL(file);
 
+    }
+
+    function formatRupiah(input){
+        let value = input.value.replace(/\D/g, "");
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        input.value = value;
     }
 </script>
 

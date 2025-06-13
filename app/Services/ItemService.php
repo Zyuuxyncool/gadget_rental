@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
+
 class ItemService extends Service
 {
 
@@ -26,11 +27,17 @@ class ItemService extends Service
 
     public function store($params)
     {
+        if(isset($params['price'])){
+            $params['price'] = str_replace('.', '', $params['price']);
+        }
         return Item::create($params);
     }
 
     public function update($params, $id)
     {
+        if(isset($params['price'])){
+            $params['price'] = str_replace('.', '', $params['price']);
+        }
         $item_service = Item::find($id);
         if (!empty($item_service)) $item_service->update($params);  
         return $item_service;

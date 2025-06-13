@@ -1145,6 +1145,106 @@ input[type="date"] {
     grid-gap: var(--template1-content-grid-gap);
 }
 
+.customer .customer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.customer .customer-header .add-new-customer a {
+    margin-left: auto;
+    align-items: center;
+    display: flex;
+    height: 44px;
+    padding: 0 12px;
+    font-size: 1rem;
+    border: 1.5px solid var(--color1);
+    border-radius: 10px;
+    background-color: var(--color1);
+    color: var(--color5);
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.4);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.customer .customer-header .add-new-customer a:hover {
+    background-color: var(--color2);
+    color: var(--color5);
+}
+
+.add-new-customer ion-icon {
+    font-size: 1.4rem;
+    color: var(--color5);
+    margin-right: 8px;
+}
+
+.customer .table-customer {
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: var(--color1);
+    padding: 20px;
+    box-shadow: var(--shadow3D);
+    border-radius: 20px;
+}
+
+.customer table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.customer table thead td {
+    font-weight: 600;
+}
+
+.customer .table-customer table tr {
+    color: var(--color5);
+    margin-bottom: 1px solid rgba(255, 255, 255, 0.811);
+}
+
+.customer .table-customer table tr:last-child {
+    margin-bottom: none;
+}
+
+.customer .table-customer table tbody tr:hover {
+    background: var(--color2);
+    color: var(--color3);
+}
+
+.customer .table-customer table tr td {
+    padding: 10px;
+    text-align: center;
+}
+
+.customer .table-customer table tr td:last-child {
+    text-align: center;
+}
+.customer .table-customer table tr td:nth-child(2) {
+    text-align: center;
+}
+.customer .table-customer table tr td:nth-child(3) {
+    text-align: center;
+}
+
+.customer .table-customer table select {
+    background: var(--color2);
+    color: var(--color5);
+    border: 2px solid var(--color1, #543f3f);
+    border-radius: 8px;
+    padding: 6px 18px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.camera{
+    display: none;
+}
+
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
     .sidebar {

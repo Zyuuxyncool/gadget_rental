@@ -36,7 +36,7 @@
                     <input value="{{ $item->name }}" type="text" id="nama" name="name" placeholder="Masukan Nama Produk">
 
                     <label for="harga">Edit Harga Produk :</label>
-                    <input value="{{ $item->price }}" type="text" id="harga" name="price" placeholder="Masukan Harga Produk">
+                    <input value="{{ $item->price }}" type="text" id="harga" name="price" placeholder="Masukan Harga Produk" oninput="formatRupiah(this)">
 
                     <label for="deskripsi">Edit Deksripsi Produk :</label>
                     <textarea id="deskripsi" name="description" placeholder="Masukan Deksripsi Produk">{{ $item->description }}</textarea>
@@ -139,6 +139,12 @@
 
         reader.readAsDataURL(file);
 
+    }
+
+    function formatRupiah(input) {
+        let value = input.value.replace(/\D/g, "");
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        input.value = value;
     }
 </script>
 
