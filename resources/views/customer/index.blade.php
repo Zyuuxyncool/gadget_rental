@@ -4,23 +4,24 @@
 
 @section('content')
 <div class="customer">
-    <div class="customer-header" style="display: flex; align-items: center; gap: 10px;">
-        <form action="" class="search" style="margin-bottom: 0,">
+    <form class="customer-header" style="display: flex; align-items: center; gap: 10px;">
+        <div class="search" style="margin-bottom: 0,">
             <label for="GET">
                 <input type="text" name="name" placeholder="Search For Name Customer">
             <ion-icon name="search-outline" ></ion-icon>
             </label>
-        </form>
-        <form action="" class="search" style="margin-bottom:0;">
-            <label for="GET">
+        </div>
+        <div class="search" style="margin-bottom:0;">
+            <label for="GET" >
                 <input type="text" name="no_id" placeholder="Search For Number ID">
             <ion-icon name="search-outline" ></ion-icon>
             </label>
-        </form>
+        </div>
+        <button type="submit" style="height: 44px; padding: 0 16px; border-radius:40px; background-color: var(--color1); outline:none; color:white; font-size:1rem; border:none; cursor: pointer; box-shadow: var(--shadow3D);">Search</button>
         <div class="add-new-customer" style="margin-left:auto;">
             <a href="{{ route('customer.create')}}"><ion-icon name="add-circle-outline"></ion-icon> Add Customer</a>
         </div>
-    </div>
+    </form>
 
     <div class="table-customer">
         <table>
@@ -50,7 +51,9 @@
                             <option value="hapus">Hapus</option>
                         </select>
                     </td>
-                    <td><a href="">detail</a></td>
+                    <td>
+                        <a class="detail" href="{{ route('customer.show', $customer->id) }}" style="text-decoration:none;">Lihat Customer</a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

@@ -31,6 +31,26 @@
 
                     <label for="deskripsi">Alamat Customer :</label>
                     <textarea id="deskripsi" name="address" placeholder="Masukan Masukan Alamat"></textarea>
+
+                    <label for="provinsi">Provinsi:</label>
+                    <select name="provinsi" id="provinsi" class="form-control select2" style="width: 100%;">
+                        <option value="">-- Pilih Provinsi --</option>
+                    </select>
+
+                    <label for="kabupaten">Kabupaten:</label>
+                    <select name="kabupaten" id="kabupaten" class="form-control select2" style="width: 100%;">
+                        <option value="">-- Pilih Kabupaten --</option>
+                    </select>
+
+                    <label for="kecamatan">Kecamatan:</label>
+                    <select name="kecamatan" id="kecamatan" class="form-control select2" style="width: 100%;">
+                        <option value="">-- Pilih Kecamatan --</option>
+                    </select>
+
+                    <label for="kelurahan">Kelurahan:</label>
+                    <select name="kelurahan" id="kelurahan" class="form-control select2" style="width: 100%;">
+                        <option value="">-- Pilih Kelurahan --</option>
+                    </select>
                 </div>
 
                 <div class="form-right">
@@ -78,8 +98,6 @@
         </table>
     </div>
 
-
-
 </div>
 @endsection
 @push('scripts')
@@ -93,6 +111,75 @@
     }
 });
 
+$(document).ready(function() {
+    let $provinsi = $('#provinsi');
+    let $kabupaten = $('#kabupaten');
+    let $kecamatan = $('#kecamatan');
+    let $kelurahan = $('#kelurahan');
+
+    let $container = $('.form-left');
+
+    $provinsi.select2({
+        placeholder: "-- Pilih Provinsi --",
+        allowClear: true,
+        width: '100%',
+        dropdownParent: $container,
+        dropdownPosition: 'below'
+    });
+
+    $kabupaten.select2({
+        placeholder: "-- Pilih Kabupaten --",
+        allowClear: true,
+        width: '100%',
+        dropdownParent: $container,
+        dropdownPosition: 'below'
+    });
+
+    $kecamatan.select2({
+        placeholder: "-- Pilih Kecamatan --",
+        allowClear: true,
+        width: '100%',
+        dropdownParent: $container,
+        dropdownPosition: 'below'
+    });
+
+    $kelurahan.select2({
+        placeholder: "-- Pilih Kelurahan --",
+        allowClear: true,
+        width: '100%',
+        dropdownParent: $container,
+        dropdownPosition: 'below'
+    });
+
+    function get_lokasi($target, tingkat, parent_id = '', selected = '') {
+        $target.html('<option value="">Loading...</option>');
+        $.get(`/api/lokasi/${parent_id}`, { tingkat: tingkat }, function (data) {
+            let options = '<option value="">-- Pilih --</option>';
+            data.forEach(item => {
+                const selectedAttr = item.nama === selected ? 'selected' : '';
+                options += `<option value="${item.id}" data-id="${item.id}" ${selectedAttr}>${item.nama}</option>`;
+            });
+            $target.html(options);
+            $target.trigger('change.select2'); // trigger change for select2 update
+        });
+    }
+
+    get_lokasi($provinsi, 1);
+
+    $provinsi.change(() => {
+        let id = $provinsi.find('option:selected').data('id');
+        get_lokasi($kabupaten, 2, id);
+    });
+
+    $kabupaten.change(() => {
+        let id = $kabupaten.find('option:selected').data('id');
+        get_lokasi($kecamatan, 3, id);
+    });
+
+    $kecamatan.change(() => {
+        let id = $kecamatan.find('option:selected').data('id');
+        get_lokasi($kelurahan, 4, id);
+    });
+});
 </script>
-    
 @endpush

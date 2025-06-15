@@ -6,7 +6,7 @@
 <div class="card-box">
     <div class="card">
         <div>
-            <div class="numbers">1,504</div>
+            <div class="numbers">{{ $items }}</div>
             <div class="card-name">Produk</div>
         </div>
 
@@ -17,7 +17,7 @@
 
     <div class="card">
         <div>
-            <div class="numbers">80</div>
+            <div class="numbers">{{ $customers }}</div>
             <div class="card-name">Customer</div>
         </div>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Services\CustomerService;
+use App\Models\Lokasi;
 use Illuminate\Http\Request;
 
 
@@ -35,8 +36,10 @@ class CustomerController extends Controller
 
     public function edit($id)
     {
-        $customers = $this->customerService->find($id);
-        return view('customer.edit', compact('customers'));
+        $customer = $this->customerService->find($id);
+        $customers = $this->customerService->search();
+        $provinsi = $this->customerService->getProvinsi();
+        return view('customer.edit', compact('customer', 'customers', 'provinsi'));
     }
 
     public function update(Request $request, $id)
@@ -49,5 +52,11 @@ class CustomerController extends Controller
     {
         $this->customerService->delete($id);
         return redirect()->route('customer.index');
+    }
+    public function show($id)
+    {
+        $customers = $this->customerService->find($id);
+        $provinsi = Lokasi::whereNull('parent_id')->get();
+        return view('customer.show', compact('customers', 'provinsi'));
     }
 }

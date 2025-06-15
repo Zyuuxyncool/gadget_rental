@@ -217,7 +217,7 @@ body {
     position: fixed;
     width: 300px;
     height: 100%;
-    background: var(---color1);
+    background: var(--color1);
     border-left: 10px solid var(--color1);
     transition: 0.5s;
     overflow: hidden;
@@ -982,6 +982,22 @@ textarea {
     align-items: center;
 }
 
+.form-submit-transaction {
+    margin-left: auto;
+    background-color: var(--color1);
+    color: var(--color5);
+    padding: 0 20px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: var(--shadow3D);
+    height: 44px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
 .add-new-transaction-btn {
     margin-left: auto;
     align-items: center;
@@ -1001,8 +1017,11 @@ textarea {
 
 .add-new-transaction-btn ion-icon {
     font-size: 1.4rem;
-    color: var(--color5);
     margin-right: 8px;
+    color: var(--color5);
+    position: relative;
+    top: 0px;
+    left: 0px;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -1241,9 +1260,39 @@ input[type="date"] {
     cursor: pointer;
 }
 
-.camera{
+.detail {
+    padding: 6px 18px;
+    border-radius: 8px;
+    border: 2px solid var(--color1);
+    background-color: var(--color2);
+    color: var(--color4);
+    font-size: 1rem;
+}
+
+.details .show-the-container {
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: var(--color1);
+    padding: 20px;
+    box-shadow: var(--shadow3D);
+    border-radius: 20px;
+}
+
+.details .photos {
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    padding: 20px;
+    background: var(--color1);
+    box-shadow: var(--shadow3D);
+    border-radius: 20px;
+}
+
+.camera {
     display: none;
 }
+
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
@@ -1266,18 +1315,26 @@ input[type="date"] {
     }
 
     .popup-box {
-        width: 90%;
-        padding: 30px;
+        width: 95%;
+        padding: 24px;
         flex-direction: column;
-        border-radius: 40px;
+        border-radius: 30px;
+        gap: 18px;
+        min-width: 0;
+        max-width: 98vw;
     }
-
+    .form-flex {
+        flex-direction: column;
+        gap: 18px;
+    }
     .form-right {
         width: 100%;
+        margin-left: 0;
+        gap: 18px;
     }
-
     .drop-area {
-        margin-top: 30px;
+        margin-top: 18px;
+        padding: 18px 8px;
     }
 
     .close-btn {
@@ -1286,7 +1343,7 @@ input[type="date"] {
         font-size: 18px;
         top: 0px;
         right: 0px;
-        border-radius: 0 30px 0 0;
+        border-radius: 0 10px 0 5px;
     }
 }
 
@@ -1303,18 +1360,228 @@ input[type="date"] {
 
     .products {
         grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    .products-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+    .products-header .add-product-btn {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .products .table-products {
+        padding: 10px;
+        min-height: unset;
+        border-radius: 10px;
+    }
+    .products table {
+        font-size: 13px;
+    }
+    .products table thead td,
+    .products table th {
+        font-size: 13px;
+        padding: 6px;
+    }
+    .products .table-products table tr td {
+        padding: 6px;
+    }
+    .products .table-products table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
-    .table-products {
-        overflow-x: auto;
+    .product-header .select-wrapper,
+    .products-header .select-wrapper {
+        width: 100%;
+        min-width: 0;
+        margin-bottom: 10px;
+    }
+    .select-wrapper select {
+        width: 100%;
+        font-size: 1rem;
+        min-width: 0;
+    }
+    .select-wrapper ion-icon {
+        display: none;
+        left: unset;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.1rem;
     }
 
     .transaction {
         grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    .transaction-header {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+    .transaction-header form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .form-submit-transaction {
+        margin: auto;
     }
 
-    .table-transaction {
+    .transaction-header .export-button,
+    .add-new-transaction-btn {
+        margin-top: 0;
+    }
+    .transaction .search label input {
+        font-size: 15px;
+        height: 38px;
+        padding-left: 32px;
+    }
+    .transaction .search label ion-icon {
+        font-size: 1rem;
+    }
+    .add-new-transaction-btn ion-icon {
+        font-size: 1.4rem;
+    }
+    .transaction input[type="date"] {
+        width: 100%;
+        font-size: 15px;
+        height: 38px;
+        padding-left: 30px;
+        margin-bottom: 10px;
+    }
+    .transaction .table-transaction {
+        padding: 10px;
+        min-height: unset;
+        border-radius: 10px;
+    }
+    .transaction table {
+        font-size: 13px;
+    }
+    .transaction table thead td,
+    .transaction table th {
+        font-size: 13px;
+        padding: 6px;
+    }
+    .transaction .table-transaction table tr td {
+        padding: 6px;
+    }
+    .transaction .table-transaction table {
+        display: block;
         overflow-x: auto;
+        white-space: nowrap;
+    }
+    .tab-nav {
+        width: 100%;
+        min-width: 0;
+        flex-wrap: wrap;
+        font-size: 13px;
+        padding: 6px 2px;
+    }
+
+    .theme-panel {
+        padding: 16px 0 12px 0;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    .theme-panel-header,
+    .theme-options {
+        padding: 0 10px;
+        font-size: 1rem;
+    }
+    .theme-option {
+        min-width: 90px;
+        padding: 10px 8px 6px 8px;
+    }
+
+    .search label input {
+        font-size: 15px;
+        height: 38px;
+        padding-left: 30px;
+    }
+    .search label ion-icon {
+        font-size: 1rem;
+        left: 8px;
+    }
+    .customer .customer-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+    .customer .customer-header .add-new-customer a {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    .customer .table-customer {
+        padding: 10px;
+        min-height: unset;
+        border-radius: 10px;
+    }
+    .customer table {
+        font-size: 13px;
+    }
+    .customer table thead td,
+    .customer table th {
+        font-size: 13px;
+        padding: 6px;
+    }
+    .customer .table-customer table tr td {
+        padding: 6px;
+    }
+    .customer .table-customer table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .customer .customer-header .add-new-customer {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .customer .customer-header .add-new-customer a {
+        width: auto;
+        min-width: 180px;
+        justify-content: center;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .popup-box {
+        width: 99vw;
+        padding: 10px;
+        border-radius: 18px;
+        gap: 10px;
+    }
+    .form-flex {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .form-left,
+    .form-right {
+        width: 100%;
+        min-width: 0;
+        gap: 10px;
+    }
+    .drop-area {
+        padding: 10px 4px;
+    }
+    .drop-area img {
+        width: 40px;
+    }
+    .add-btn {
+        width: 100%;
+        font-size: 13px;
+        padding: 8px 0;
     }
 }
 
@@ -1374,7 +1641,34 @@ input[type="date"] {
         right: 0;
         left: initial;
     }
-
+    .products-header .add-product-btn {
+        min-width: 140px;
+        font-size: 0.95rem;
+        padding: 0 8px;
+    }
+    .products .table-products {
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .products table {
+        font-size: 12px;
+    }
+    .product-header .select-wrapper,
+    .products-header .select-wrapper {
+        width: 100%;
+        min-width: 0;
+        margin-bottom: 8px;
+    }
+    .select-wrapper select {
+        width: 100%;
+        font-size: 0.95rem;
+        min-width: 0;
+        padding-right: 28px;
+    }
+    .select-wrapper ion-icon {
+        right: 10px;
+        font-size: 1rem;
+    }
     .popup-box {
         padding: 20px;
         gap: 20px;
@@ -1398,5 +1692,24 @@ input[type="date"] {
     .add-btn {
         padding: 8px 16px;
         font-size: 14px;
+    }
+    .transaction .search label input,
+    .transaction input[type="date"] {
+        font-size: 13px;
+        height: 34px;
+        padding-left: 26px;
+    }
+    .transaction-header .export-button,
+    .add-new-transaction-btn {
+        font-size: 0.95rem;
+        padding: 8px 0;
+        min-width: 0;
+    }
+    .transaction .table-transaction {
+        padding: 5px;
+        border-radius: 8px;
+    }
+    .transaction table {
+        font-size: 12px;
     }
 }

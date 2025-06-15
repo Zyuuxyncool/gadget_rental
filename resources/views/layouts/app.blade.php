@@ -9,8 +9,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
-
-
+    <link rel="stylesheet" href="{{ asset('css/fix-select2-layout.css') }}">
 </head>
 
 <body id="bodyTheme">

@@ -36,7 +36,7 @@ $tab = request()->query('tab', 'belum-kembali');
                 name="tanggal"
                 value="{{ request('tanggal', \Carbon\Carbon::now()->format('Y-m-d')) }}"
                 style="height: 44px; width:150px; color: var(--template1-color5); font-weight: 500; font-size: 16px; border: 1px solid var(--chocolate-brown); border-radius: 6px; padding: 6px 10px;">
-            <button type="submit" class="export-button" style="height: 44px; padding: 0 16px;">
+            <button type="submit" class="form-submit-transaction" style="height: 44px; padding: 0 16px;">
                 Cari
             </button>
         </form>

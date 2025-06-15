@@ -1,0 +1,107 @@
+/* Fix select2 dropdowns to appear inline horizontally with spacing */
+.lokasi-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.lokasi-container .select-group {
+    flex: 1 1 200px;
+    min-width: 150px;
+}
+
+
+.select2-container {
+    width: 100% !important;
+}
+
+/* Optional: adjust select2 dropdown z-index if needed */
+.select2-container--open {
+    z-index: 9999 !important;
+}
+
+.show-the-container {
+    position: relative;
+    overflow: visible !important;
+    z-index: 1;
+}
+
+.select-group select {
+    width: 100%;
+    display: inline-block;
+    margin: 4px;
+}
+
+.select2-container {
+    d.select2-container {
+        display: inline-block;
+        width: auto !important; /* atau 150px / 200px */
+        min-width: 120px;
+        max-width: 200px;
+        vertical-align: middle;
+    }
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: var(--color2);
+    border: 1px solid var(--color3);
+    border-radius: 6px;
+    padding: 4px 8px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    color: var(--color1);
+    box-shadow: none;
+}
+
+.select2-container--default
+    .select2-selection--single
+    .select2-selection__rendered {
+    color: var(--color5);
+    padding-left: 4px;
+    font-size: 14px;
+    line-height: 38px;
+}
+
+.select2-container--default
+    .select2-selection--single
+    .select2-selection__placeholder {
+    color: var(--color5);
+}
+
+.select2-container--default
+    .select2-selection--single
+    .select2-selection__arrow {
+    height: 100%;
+    right: 10px;
+}
+
+.select2-container--default
+    .select2-selection--single
+    .select2-selection__arrow
+    b {
+    border-color: var(--color1) transparent transparent transparent;
+}
+
+.select2-dropdown {
+    background-color: var(--color6);
+    border: 1px solid var(--color3);
+    border-radius: 6px;
+}
+
+.select2-results__option {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: var(--color1);
+}
+
+.select2-results__option--highlighted[aria-selected] {
+    background-color: var(--color3);
+    color: var(--color5);
+}
+
+.select2-results__option[aria-selected="true"] {
+    background-color: var(--color2);
+    color: var(--color5);
+}
