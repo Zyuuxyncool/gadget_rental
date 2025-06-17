@@ -30,7 +30,6 @@ class CustomerService extends Service
 
     public function find($value, $column = 'id')
     {
-
         return Customer::with(['provinsi', 'kabupaten', 'kecamatan', 'kelurahan'])->where($column, $value)->first();
     }
 

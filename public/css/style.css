@@ -1293,6 +1293,26 @@ input[type="date"] {
     display: none;
 }
 
+.table-customer .img-bx{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    overflow: hidden;
+    margin: auto;
+}
+
+.table-customer .img-bx img{
+    
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {

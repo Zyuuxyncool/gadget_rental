@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Services\CustomerService;
 use App\Models\Lokasi;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 
 
@@ -30,6 +31,8 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
+        $filename = ImageService::save_file($request, 'file_image', 'public/images/customer_image');
+        if ($filename !== '') $request->merge(['image' => $filename]);
         $this->customerService->store($request->all());
         return redirect()->route('customer.index');
     }
@@ -44,12 +47,17 @@ class CustomerController extends Controller
 
     public function update(Request $request, $id)
     {
+        $filename = ImageService::save_file($request, 'file_image', 'public/images/customer_image');
+        if ($filename !== '') $request->merge(['image' => $filename]);
+        // dd($request->all());
         $this->customerService->update($request->all(), $id);
         return redirect()->route('customer.index');
     }
 
     public function destroy($id)
     {
+        $customers = $this->customerService->find($id);
+        ImageService::delete_file($customers->image);
         $this->customerService->delete($id);
         return redirect()->route('customer.index');
     }

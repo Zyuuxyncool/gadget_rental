@@ -30,8 +30,7 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-
-        $filename = ImageService::save_file($request, 'file_image', 'public/images');
+        $filename = ImageService::save_file($request, 'file_image', 'public/images/item_image');
         if ($filename !== '') $request->merge(['image' => $filename]);
         $this->itemService->store($request->all());
         return redirect()->route('item.index');

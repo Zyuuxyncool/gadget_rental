@@ -70,6 +70,16 @@
                     width="150">
             @endif
         </div>
+
+        <div class="back-btn" style="grid-column: 1 / -1; display: flex; justify-content: center;">
+            <a href="{{route('customer.index')}}"
+                style="width:900px; padding: 10px 15px; background-color: var(--color1); text-align:center; text-decoration:none; color: var(--color5); border: 1px solid var(--color2); border-radius:12px; box-shadow: var(--shadow3D); justify-content:center; possiton"
+                >Kembali</a>
+        </div>
+
+
+
+
     </div>
 @endsection
 
@@ -87,7 +97,7 @@
                         `<option value="${item.id}" data-id="${item.id}" ${selectedAttr}>${item.nama}</option>`;
                 });
                 $target.html(options);
-                $target.trigger('change.select2'); // trigger change for select2 update
+                $target.trigger('change.select2');
             });
         }
 
@@ -96,10 +106,10 @@
         let $kecamatan = $('#kecamatan');
         let $kelurahan = $('#kelurahan');
 
-        let $container = $('.show-the-container'); 
+        let $container = $('.show-the-container');
 
         $provinsi.select2({
-            placeholder: "-- Pilih Provinsi --",
+            placeholder: "--  Belum Memilih --",
             allowClear: true,
             width: '100%',
             dropdownParent: $container,
@@ -107,7 +117,7 @@
             disabled: true
         });
         $kabupaten.select2({
-            placeholder: "-- Pilih Kabupaten --",
+            placeholder: "--  Belum Memilih --",
             allowClear: true,
             width: '100%',
             dropdownParent: $container,
@@ -115,7 +125,7 @@
             disabled: true
         });
         $kecamatan.select2({
-            placeholder: "-- Pilih Kecamatan --",
+            placeholder: "-- Belum Memilih --",
             allowClear: true,
             width: '100%',
             dropdownParent: $container,
@@ -123,14 +133,13 @@
             disabled: true
         });
         $kelurahan.select2({
-            placeholder: "-- Pilih Kelurahan --",
+            placeholder: "--  Belum Memilih --",
             allowClear: true,
             width: '100%',
             dropdownParent: $container,
             dropdownPosition: 'below',
             disabled: true
         });
-
 
         get_lokasi($provinsi, 1, '', '{{ $customers->provinsi?->nama }}');
         get_lokasi($kabupaten, 2, '{{ $customers->provinsi?->id }}', '{{ $customers->kabupaten?->nama }}');
