@@ -273,3 +273,8 @@ function unformat_number($number)
     return $number;
 }
 
+
+function todayDate()
+{
+    return \Carbon\Carbon::now()->format('Y-m-d');
+}

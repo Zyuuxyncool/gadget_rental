@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fix-select2-layout.css') }}">
+    <!-- Bootstrap 5 CSS -->
+
+
 
 </head>
 
@@ -27,7 +30,8 @@
                 </div>
 
                 <!-- Theme Toggle Button -->
-                <button class="theme-toggle-btn" onclick="toggleThemePanel()" aria-controls="theme-panel" aria-expanded="false">
+                <button class="theme-toggle-btn" onclick="toggleThemePanel()" aria-controls="theme-panel"
+                    aria-expanded="false">
                     <span class="sr-only"></span>
                     <ion-icon name="color-palette-outline"></ion-icon>
                 </button>
@@ -70,15 +74,14 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
     <script src="{{ asset('js/main.js') }}"></script>
-    <!-- Ion Icons -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    // select2
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
-    
+    <script src="{{ asset('js/io.js') }}"></script>
+
+
     @stack('scripts')
 
 </body>

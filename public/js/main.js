@@ -79,12 +79,51 @@ document.addEventListener("DOMContentLoaded", function () {
             btn.classList.add("selected");
         }
         btn.onclick = function () {
-            document.querySelectorAll(".theme-option").forEach((b) => b.classList.remove("selected"));
+            document
+                .querySelectorAll(".theme-option")
+                .forEach((b) => b.classList.remove("selected"));
             btn.classList.add("selected");
             const angkaTemplate = btn.dataset.theme.split("-")[1];
             ubahTemplate(angkaTemplate);
             toggleThemePanel();
         };
+    });
+
+    document.addEventListener("click", function (e) {
+        const toggleBtn = e.target.closest(".dropdown-toggle");
+
+        if (toggleBtn) {
+            e.stopPropagation();
+
+            // Toggle class 'active' pada tombol
+            toggleBtn.classList.toggle("active");
+
+            const dropdown = toggleBtn.parentElement.querySelector(".action");
+            const isVisible = dropdown.style.display === "block";
+
+            // Tutup semua dropdown lainnya
+            document.querySelectorAll(".action").forEach((menu) => {
+                menu.style.display = "none";
+            });
+
+            document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
+                btn.classList.remove("active");
+            });
+
+            // Jika sebelumnya tidak terlihat, tampilkan yang ini
+            if (!isVisible) {
+                dropdown.style.display = "block";
+                toggleBtn.classList.add("active");
+            }
+        } else {
+            // Klik di luar dropdown → tutup semua
+            document.querySelectorAll(".action").forEach((menu) => {
+                menu.style.display = "none";
+            });
+            document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
+                btn.classList.remove("active");
+            });
+        }
     });
 });
 
@@ -98,4 +137,10 @@ function ubahTemplate(angkaTemplate) {
 function toggleThemePanel() {
     const panel = document.getElementById("theme-panel");
     panel.classList.toggle("active");
+}
+
+function formatRupiah(input) {
+    let value = input.value.replace(/\D/g, "");
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    input.value = value;
 }

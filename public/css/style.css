@@ -7,6 +7,14 @@
     box-sizing: border-box;
 }
 
+input:-webkit-autofill {
+    font-size: 18px !important;
+    background-color: transparent !important;
+    caret-color: white !important; 
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: white !important; 
+}
+
 :root {
     /* Div nya isi di dalam  cuman 1 div */
     --template1-content-possition: relative;
@@ -27,7 +35,7 @@
     /* Isi Warna Web */
     --template1-color1: #543f3f; /* Warna utama */
     --template1-color2: #6a5151; /* Warna sekunder */
-    --template1-color3: #a5a5a5; /* Warna aksen hover + teks */
+    --template1-color3: #fff; /* Warna aksen hover + teks */
     /* --template1-color4: ;    Opsi */
     --template1-color5: #fff; /* Warna teks */
     --template1-color6: #d9d9d9; /* Warna latar belakang */
@@ -36,7 +44,7 @@
     /* template color 2 */
     --template2-color1: #537d5d;
     --template2-color2: #73946b;
-    --template2-color3: #9ebc8a;
+    --template2-color3: #fff;
     /* --template2-color4: #d9d9d9; */ /* Opsi */
     --template2-color5: #fff;
     --template2-color6: #d2d0a0;
@@ -92,6 +100,84 @@
 }
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color1);
+}
+
+.pagination-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.pagination-list {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Semua elemen pagination */
+.pagination-list li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Link pagination (yang bisa diklik) */
+.pagination-list a {
+    background-color: var(--color2);
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    min-width: 36px;
+    height: 36px;
+    font-size: 14px;
+    color: var(--color5);
+    text-align: center;
+    text-decoration: none;
+    box-shadow: var(--shadow3D);
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.pagination-list a:hover {
+    background-color: var(--color1);
+    transform: translateY(-2px);
+}
+
+/* Nomor aktif saat ini */
+.pagination-active {
+    background-color: var(--color1);
+    color: var(--color3);
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 6px 10px;
+    min-width: 36px;
+    height: 36px;
+    font-size: 14px;
+    box-shadow: var(--shadow3D);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Separator atau tombol disable */
+.pagination-disabled span {
+    background-color: var(--color1);
+    color: #aaa;
+    border-radius: 6px;
+    padding: 6px 10px;
+    min-width: 36px;
+    height: 36px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: not-allowed;
+    box-shadow: var(--shadow3D);
 }
 
 /* Theme Panel */
@@ -191,7 +277,7 @@
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    border: 1.5px solid #eee;
+    border: 1.5px solid black;
 }
 .theme-option-label {
     font-size: 1rem;
@@ -591,8 +677,8 @@ body {
 }
 .recent-customers .img-bx {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 55px;
+    height: 55px;
     border-radius: 50px;
     overflow: hidden;
 }
@@ -1028,6 +1114,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
 
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
 input[type="date"] {
     background-color: var(--color1);
     color: var(--color5);
@@ -1144,16 +1234,6 @@ input[type="date"] {
     color: var(--color5);
 }
 
-/* ===================== New Transaksi ===================== */
-.new-transaksi {
-    position: var(--template1-content-possition);
-    width: var(--template1-content-width);
-    padding: var(--template1-content-padding);
-    display: var(--template1-content-display);
-    grid-template-columns: var(--template1-content-grid-template-columns);
-    grid-gap: var(--template1-content-grid-gap);
-}
-
 /* ===================== Customer =========================== */
 .customer {
     position: var(--template1-content-possition);
@@ -1248,16 +1328,68 @@ input[type="date"] {
     text-align: center;
 }
 
-.customer .table-customer table select {
+.dropdown-toggle {
     background: var(--color2);
     color: var(--color5);
     border: 2px solid var(--color1, #543f3f);
     border-radius: 8px;
     padding: 6px 18px;
     font-size: 1rem;
-    outline: none;
-    transition: border 0.2s, box-shadow 0.2s;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, border 0.2s;
+}
+
+.dropdown-toggle ion-icon {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-toggle.active ion-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-icon {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-toggle.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.action {
+    display: none;
+    position: absolute;
+    background: var(--color2);
+    border: 2px solid var(--color1, #543f3f);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    list-style: none;
+    padding: 0;
+    min-width: 100px;
+    z-index: 100;
+}
+
+.action li a {
+    display: block;
+    padding: 8px 12px;
+    color: var(--color5);
+    text-decoration: none;
+    transition: background 0.2s;
+    border-radius: 6px;
+}
+
+.action li a:hover {
+    background: var(--color1);
+    color: #fff;
+}
+
+/* Posisi dropdown relatif ke container */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
 }
 
 .detail {
@@ -1293,7 +1425,7 @@ input[type="date"] {
     display: none;
 }
 
-.table-customer .img-bx{
+.table-customer .img-bx {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1304,15 +1436,13 @@ input[type="date"] {
     margin: auto;
 }
 
-.table-customer .img-bx img{
-    
+.table-customer .img-bx img {
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
@@ -1620,7 +1750,7 @@ input[type="date"] {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: #543f3f;
+        background: var;
         padding: 30px;
         border-radius: 20px;
         box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);

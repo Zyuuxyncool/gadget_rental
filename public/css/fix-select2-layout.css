@@ -11,7 +11,6 @@
     min-width: 150px;
 }
 
-
 .select2-container {
     width: 100% !important;
 }
@@ -104,4 +103,26 @@
 .select2-results__option[aria-selected="true"] {
     background-color: var(--color2);
     color: var(--color5);
+}
+/* Hapus outline dan box-shadow dari Select2 container saat focus */
+.select2-container--default:focus,
+.select2-container--default:focus-visible,
+.select2-container--default:focus-within,
+.select2-container--default.select2-container--focus,
+.select2-container--default.select2-container--focus
+    .select2-selection--single {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Tambahan: untuk .select2-dropdown juga */
+.select2-dropdown {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+}
+.select2-container--default.select2-container--focus
+    .select2-selection--single {
+    border: 1px solid #d3d3d3 !important;
+    box-shadow: 0 0 0 2px rgba(211, 211, 211, 0.3) !important;
+    outline: none !important;
 }

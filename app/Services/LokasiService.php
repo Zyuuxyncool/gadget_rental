@@ -26,7 +26,7 @@ class LokasiService extends Service
         if ($tingkat == 1) {
             return Lokasi::whereNull('parent_id')->get();
         } else {
-            return Lokasi::where('parent_id', $parent_id)->get(); 
+            return Lokasi::where('parent_id', $parent_id)->get();
         }
     }
 }

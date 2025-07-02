@@ -15,4 +15,8 @@ class Item extends Model
         'image'
     ];
 
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 }
 
+
 .select2-container .select2-selection--single .select2-selection__rendered {
     display: block;
     padding-left: 8px;
@@ -105,7 +106,7 @@
     padding: 4px;
 }
 .select2-search--dropdown .select2-search__field {
-    padding: 4px;
+    padding: 8px;
     width: 100%;
     box-sizing: border-box;
 }

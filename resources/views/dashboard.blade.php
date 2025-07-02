@@ -17,7 +17,7 @@
 
         <div class="card">
             <div>
-                <div class="numbers">{{ $customers }}</div>
+                <div class="numbers">{{ $customers_count }}</div>
                 <div class="card-name">Customer</div>
             </div>
 
@@ -147,66 +147,20 @@
                 <a href="{{ route('customer.index') }}" class="btn">Lihat Semua</a>
             </div>
             <table>
-                <tr>
-                    <td width="60px">
-                        <div class="img-bx">
-                            <img src="{{ asset('img/default-avatar.jpg') }}" alt="">
-                        </div>
-                    </td>
-                    <td>
-                        <h4>Muhammad Andreas Athallah Saifa Anam<br><span>Web Developer</span></h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="60px">
-                        <div class="img-bx">
-                            <img src="{{ asset('img/default-avatar.jpg') }}" alt="">
-                        </div>
-                    </td>
-                    <td>
-                        <h4>Muhammad Andreas Athallah Saifa Anam<br><span>Web Developer</span></h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="60px">
-                        <div class="img-bx">
-                            <img src="{{ asset('img/default-avatar.jpg') }}" alt="">
-                        </div>
-                    </td>
-                    <td>
-                        <h4>Muhammad Andreas Athallah Saifa Anam<br><span>Web Developer</span></h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="60px">
-                        <div class="img-bx">
-                            <img src="{{ asset('img/default-avatar.jpg') }}" alt="">
-                        </div>
-                    </td>
-                    <td>
-                        <h4>Muhammad Andreas Athallah Saifa Anam<br><span>Web Developer</span></h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="60px">
-                        <div class="img-bx">
-                            <img src="{{ asset('img/default-avatar.jpg') }}" alt="">
-                        </div>
-                    </td>
-                    <td>
-                        <h4>Muhammad Andreas Athallah Saifa Anam<br><span>Web Developer</span></h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="60px">
-                        <div class="img-bx">
-                            <img src="{{ asset('img/default-avatar.jpg') }}" alt="">
-                        </div>
-                    </td>
-                    <td>
-                        <h4>Muhammad Andreas Athallah Saifa Anam<br><span>Web Developer</span></h4>
-                    </td>
-                </tr>
+                @foreach ($customer_limits as $customer_limit)
+                    <tr>
+                        <td width="60px">
+                            <div class="img-bx">
+                                <img src="{{ $customer_limit->image ? Storage::url($customer_limit->image) : asset('img/default-avatar.jpg') }}"
+                                    alt="">
+                            </div>
+                        </td>
+                        <td>
+                            <h4>{{ $customer_limit->name }}<br><span>{{ $customer_limit->address ?? 'Tidak Ada Alamat' }}</span>
+                            </h4>
+                        </td>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>

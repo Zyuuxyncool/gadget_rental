@@ -115,48 +115,48 @@
 @endsection
 @push('scripts')
     <script>
-         const dropArea = document.getElementById("drop_area"); //div drop_area
-    const fileImage = document.getElementById("file_input"); //id input
-    const previewContainer = document.getElementById("preview_container"); //[review_container]
+        const dropArea = document.getElementById("drop_area"); //div drop_area
+        const fileImage = document.getElementById("file_input"); //id input
+        const previewContainer = document.getElementById("preview_container"); //[review_container]
 
-    // Mencegah perilaku default untuk event drag and drop
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        dropArea.addEventListener(eventName, e => e.preventDefault());
-    });
+        // Mencegah perilaku default untuk event drag and drop
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, e => e.preventDefault());
+        });
 
-    // Handle drop
-    dropArea.addEventListener("drop", handleDrop);
+        // Handle drop
+        dropArea.addEventListener("drop", handleDrop);
 
-    function handleDrop(e) {
-        const file = e.dataTransfer.files[0];
-        if (file && file.type.startsWith("image/")) {
-            previewImage(file);
+        function handleDrop(e) {
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith("image/")) {
+                previewImage(file);
+            }
         }
-    }
 
-    dropArea.addEventListener("click", () => fileImage.click()); //click Input
-    fileImage.addEventListener("change", () => {
-        const file = fileImage.files[0];
-        if (file && file.type.startsWith("image/")) {
-            previewImage(file);
+        dropArea.addEventListener("click", () => fileImage.click()); //click Input
+        fileImage.addEventListener("change", () => {
+            const file = fileImage.files[0];
+            if (file && file.type.startsWith("image/")) {
+                previewImage(file);
+            }
+        });
+
+        function previewImage(file) {
+            const dropImage = dropArea.querySelector('img');
+            const dropText = dropArea.querySelector('p');
+            if (dropImage) dropImage.remove();
+            if (dropText) dropText.remove();
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewContainer.innerHTML =
+                    `<img src="${e.target.result}" style="max-width: 100px; max-height: 100px; margin-top: 10px; height: 100%; width: auto;" alt="Preview">`;
+            };
+
+            reader.readAsDataURL(file);
+
         }
-    });
-
-    function previewImage(file) {
-        const dropImage = dropArea.querySelector('img');
-        const dropText = dropArea.querySelector('p');
-        if (dropImage) dropImage.remove();
-        if (dropText) dropText.remove();
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            previewContainer.innerHTML =
-                `<img src="${e.target.result}" style="max-width: 100px; max-height: 100px; margin-top: 10px; height: 100%; width: auto;" alt="Preview">`;
-        };
-
-        reader.readAsDataURL(file);
-
-    }
         document.getElementById('start-camera').addEventListener('click', async () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({
@@ -211,10 +211,15 @@
 
             function get_lokasi($target, tingkat, parent_id = '', selected = '') {
                 $target.html('<option value="">Loading...</option>');
+                console.log('get_lokasi', {
+                    tingkat,
+                    parent_id,
+                    selected
+                }); // Tambah ini
                 $.get(`/api/lokasi/${parent_id}`, {
                     tingkat: tingkat
                 }, function(data) {
-                    console.log('get_lokasi data for tingkat', tingkat, 'parent_id', parent_id, data);
+                    console.log('API response:', data); // Tambah ini
                     let options = '<option value="">-- Pilih --</option>';
                     let selectedExists = false;
                     data.forEach(item => {
@@ -227,7 +232,7 @@
                         options += `<option value="${selected}" selected>Selected</option>`;
                     }
                     $target.html(options);
-                    $target.trigger('change.select2'); // trigger change for select2 update
+                    $target.trigger('change.select2');
                 });
             }
 
@@ -237,13 +242,16 @@
 
             $provinsi.on('change', function() {
                 get_lokasi($kabupaten, 2, $(this).val());
-                $kecamatan.html('<option value="">-- Pilih Kecamatan --</option>').trigger('change.select2');
-                $kelurahan.html('<option value="">-- Pilih Kelurahan --</option>').trigger('change.select2');
+                $kecamatan.html('<option value="">-- Pilih Kecamatan --</option>').trigger(
+                    'change.select2');
+                $kelurahan.html('<option value="">-- Pilih Kelurahan --</option>').trigger(
+                    'change.select2');
             });
 
             $kabupaten.on('change', function() {
                 get_lokasi($kecamatan, 3, $(this).val());
-                $kelurahan.html('<option value="">-- Pilih Kelurahan --</option>').trigger('change.select2');
+                $kelurahan.html('<option value="">-- Pilih Kelurahan --</option>').trigger(
+                    'change.select2');
             });
 
             $kecamatan.on('change', function() {

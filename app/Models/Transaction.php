@@ -22,9 +22,9 @@ class Transaction extends Model
     // Status
     const STATUSES = [
         0 => 'Belum Dikembalikan',
-        1 => 'Sudah Dikembalikan',
-        2 => 'Terlambat',
-        3 => 'Dibatalkan'
+        1 => 'Terlambat',
+        2 => 'Dibatalkan',
+        3 => 'Sudah Dikembalikan'
     ];
 
     public function item()

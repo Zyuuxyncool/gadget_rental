@@ -9,10 +9,10 @@
                 <h2>Informasi Customer</h2>
             </div>
 
-            <p>Nama Customer : <span>{{ $customers->name }}</span></p>
-            <p>No ID : <span>{{ $customers->no_id }}</span></p>
-            <p>Nomor Telepon : <span>{{ $customers->phone }}</span></p>
-            <p>Alamat : <span>{{ $customers->address }}</span></p>
+            <p>Nama Customer : <span>{{ $customers?->name ?? '-' }}</span></p>
+            <p>No ID : <span>{{ $customers?->no_id ?? '-' }}</span></p>
+            <p>Nomor Telepon : <span>{{ $customers?->phone ?? '-' }}</span></p>
+            <p>Alamat : <span>{{ $customers?->address ?? '-' }}</span></p>
 
             <div class="lokasi-container">
                 <div class="select-group">
@@ -21,7 +21,7 @@
                         <option value="">-- Pilih Provinsi --</option>
                         @foreach ($provinsi as $prov)
                             <option value="{{ $prov->id }}" data-id="{{ $prov->id }}"
-                                {{ $prov->nama == $customers->provinsi?->nama ? 'selected' : '' }}>
+                                {{ $customers && $prov->nama == $customers->provinsi?->nama ? 'selected' : '' }}>
                                 {{ $prov->nama }}
                             </option>
                         @endforeach
@@ -57,24 +57,23 @@
             <div class="card-header">
                 <h2>Foto Customer</h2>
             </div>
-            @if ($customers->photo1)
+            @if ($customers && $customers->photo1)
                 <img src="{{ asset('storage/' . $customers->photo1) }}" alt="Foto 1" class="img-thumbnail m-1"
                     width="150">
             @endif
-            @if ($customers->photo2)
+            @if ($customers && $customers->photo2)
                 <img src="{{ asset('storage/' . $customers->photo2) }}" alt="Foto 2" class="img-thumbnail m-1"
                     width="150">
             @endif
-            @if ($customers->photo3)
+            @if ($customers && $customers->photo3)
                 <img src="{{ asset('storage/' . $customers->photo3) }}" alt="Foto 3" class="img-thumbnail m-1"
                     width="150">
             @endif
         </div>
 
         <div class="back-btn" style="grid-column: 1 / -1; display: flex; justify-content: center;">
-            <a href="{{route('customer.index')}}"
-                style="width:900px; padding: 10px 15px; background-color: var(--color1); text-align:center; text-decoration:none; color: var(--color5); border: 1px solid var(--color2); border-radius:12px; box-shadow: var(--shadow3D); justify-content:center; possiton"
-                >Kembali</a>
+            <a href="{{ route('customer.index') }}"
+                style="width:900px; padding: 10px 15px; background-color: var(--color1); text-align:center; text-decoration:none; color: var(--color5); border: 1px solid var(--color2); border-radius:12px; box-shadow: var(--shadow3D); justify-content:center; possiton">Kembali</a>
         </div>
 
 
@@ -141,22 +140,22 @@
             disabled: true
         });
 
-        get_lokasi($provinsi, 1, '', '{{ $customers->provinsi?->nama }}');
-        get_lokasi($kabupaten, 2, '{{ $customers->provinsi?->id }}', '{{ $customers->kabupaten?->nama }}');
-        get_lokasi($kecamatan, 3, '{{ $customers->kabupaten?->id }}', '{{ $customers->kecamatan?->nama }}');
-        get_lokasi($kelurahan, 4, '{{ $customers->kecamatan?->id }}', '{{ $customers->kelurahan?->nama }}');
+        get_lokasi($provinsi, 1, '', '{{ $customers?->provinsi?->nama }}');
+        get_lokasi($kabupaten, 2, '{{ $customers?->provinsi?->id }}', '{{ $customers?->kabupaten?->nama }}');
+        get_lokasi($kecamatan, 3, '{{ $customers?->kabupaten?->id }}', '{{ $customers?->kecamatan?->nama }}');
+        get_lokasi($kelurahan, 4, '{{ $customers?->kecamatan?->id }}', '{{ $customers?->kelurahan?->nama }}');
 
         $provinsi.change(() => {
             let id = $provinsi.find('option:selected').data('id');
-            get_lokasi($kabupaten, 2, id, '{{ $customers->kabupaten?->nama }}');
+            get_lokasi($kabupaten, 2, id, '{{ $customers?->kabupaten?->nama }}');
         });
         $kabupaten.change(() => {
             let id = $kabupaten.find('option:selected').data('id');
-            get_lokasi($kecamatan, 3, id, '{{ $customers->kecamatan?->nama }}');
+            get_lokasi($kecamatan, 3, id, '{{ $customers?->kecamatan?->nama }}');
         });
         $kecamatan.change(() => {
             let id = $kecamatan.find('option:selected').data('id');
-            get_lokasi($kelurahan, 4, id, '{{ $customers->kelurahan?->nama }}');
+            get_lokasi($kelurahan, 4, id, '{{ $customers?->kelurahan?->nama }}');
         });
     </script>
 @endpush

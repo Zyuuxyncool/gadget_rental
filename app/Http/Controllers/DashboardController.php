@@ -24,8 +24,10 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $items = $this->itemService->search(['count' => 1]);
-        $customers = $this->customerService->search(['count' => 1]);
+        $customer_limits = $this->customerService->search(['limit' => 10]);
+        $customers_count = $this->customerService->search(['count' => 1]);
+        $customers = $this->customerService->search();
         $transactions = $this->transactionService->search(['count' => 1]);
-        return view('dashboard', compact('items', 'customers', 'transactions'));
+        return view('dashboard', compact('items', 'customers', 'transactions' , 'customer_limits', 'customers_count'));
     }
 }

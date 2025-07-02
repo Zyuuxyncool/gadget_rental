@@ -9,6 +9,7 @@ use App\Services\ImageService;
 use Illuminate\Http\Request;
 
 
+
 class CustomerController extends Controller
 {
     protected $customerService;
@@ -23,10 +24,16 @@ class CustomerController extends Controller
         return view('customer.index', compact('customers'));
     }
 
+    public function search(Request $request)
+    {
+        $customers = $this->customerService->search($request->all());
+        return view('customer._table', compact('customers'));
+    }
+
     public function create()
     {
-        $customers = $this->customerService->search();
-        return view('customer.create', compact('customers'));
+        $provinsi = $this->customerService->getProvinsi();
+        return view('customer._form', compact('provinsi'));
     }
 
     public function store(Request $request)
@@ -39,10 +46,9 @@ class CustomerController extends Controller
 
     public function edit($id)
     {
-        $customer = $this->customerService->find($id);
-        $customers = $this->customerService->search();
+        $customers = $this->customerService->find($id);
         $provinsi = $this->customerService->getProvinsi();
-        return view('customer.edit', compact('customer', 'customers', 'provinsi'));
+        return view('customer._form', compact('customers', 'provinsi'));
     }
 
     public function update(Request $request, $id)
@@ -61,6 +67,7 @@ class CustomerController extends Controller
         $this->customerService->delete($id);
         return redirect()->route('customer.index');
     }
+
     public function show($id)
     {
         $customers = $this->customerService->find($id);

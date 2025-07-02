@@ -15,17 +15,21 @@ class ItemController extends Controller
         $this->itemService = new ItemService();
     }
 
-
     public function index(request $request)
     {
         $items = $this->itemService->search($request);
         return view('item.index', compact('items'));
     }
 
+    public function search(Request $request)
+    {
+        $items = $this->itemService->search($request->all());
+        return view('item._table', compact('items'));
+    }
+
     public function create()
     {
-        $items = $this->itemService->search();
-        return view('item.create', compact('items'));
+        return view('item._form');
     }
 
     public function store(Request $request)
@@ -38,9 +42,8 @@ class ItemController extends Controller
 
     public function edit($id)
     {
-        $item = $this->itemService->find($id);
-        $items = $this->itemService->search();
-        return view('item.edit', compact('item', 'items'));
+        $items = $this->itemService->find($id);
+        return view('item._form', compact('items'));
     }
 
     public function update(Request $request, $id)
