@@ -28,7 +28,7 @@
 
         <div class="card">
             <div>
-                <div class="numbers">284</div>
+                <div class="numbers">{{ $transactions }}</div>
                 <div class="card-name">History Transaksi</div>
             </div>
 
@@ -52,7 +52,7 @@
     <div class="details">
         <div class="recent-orders">
             <div class="card-header">
-                <h2>Transaksi Terbaru</h2>
+                <h2>Daftar Pengembalian Hari Ini</h2>
                 <a href="{{ route('transaction.index') }}" class="btn">Lihat Semua</a>
             </div>
             <table>
@@ -64,79 +64,36 @@
                         <td>Status</td>
                     </tr>
                 </thead>
+                @php
+                    $todayTrx = $transactions_customer_id->filter(function ($trx) {
+                        return isToday($trx->return_date);
+                    });
+                @endphp
                 <tbody>
-                    <tr>
-                        <td>Muhammad Andreas Athallah Saifa Anam</td>
-                        <td>BMW M4</td>
-                        <td>2025-12-11</td>
-                        <td><span class="status selesai">Sudah Selesai</span></td>
-                    </tr>
-                    <tr>
-                        <td>Zelina Irene Chrisani</td>
-                        <td>Villa</td>
-                        <td>2025-08-10</td>
-                        <td><span class="status selesai">Sudah Selesai</span></td>
-                    </tr>
-                    <tr>
-                        <td>Evan Adhiarja Yohanes</td>
-                        <td>Pesawat Pribadi</td>
-                        <td>2026-01-05</td>
-                        <td><span class="status selesai">Sudah Selesai</span></td>
-                    </tr>
-                    <tr>
-                        <td>Muhammad Raihan Al Irsyad</td>
-                        <td>Mazda MX-5</td>
-                        <td>2025-12-11</td>
-                        <td><span class="status dibatalkan">Di Batalkan</span></td>
-                    </tr>
-                    <tr>
-                        <td>Muhammad Andreas Athallah Saifa Anam</td>
-                        <td>Alphard</td>
-                        <td>2025-07-11</td>
-                        <td><span class="status belum-kembali">Belum kembali</span></td>
-                    </tr>
-                    <tr>
-                        <td>Muhammad Andreas Athallah Saifa Anam</td>
-                        <td>BMW M4</td>
-                        <td>2025-12-11</td>
-                        <td><span class="status terlambat">Terlambat</span></td>
-                    </tr>
-                    <tr>
-                        <td>Muhammad Andreas Athallah Saifa Anam</td>
-                        <td>BMW M4</td>
-                        <td>2025-12-11</td>
-                        <td><span class="status selesai">Sudah Selesai</span></td>
-                    </tr>
-                    <tr>
-                        <td>Muhammad Andreas Athallah Saifa Anam</td>
-                        <td>BMW M4</td>
-                        <td>2025-12-11</td>
-                        <td><span class="status selesai">Sudah Selesai</span></td>
-                    </tr>
-                    <tr>
-                        <td>Muhammad Andreas Athallah Saifa Anam</td>
-                        <td>BMW M4</td>
-                        <td>2025-12-11</td>
-                        <td><span class="status selesai">Sudah Selesai</span></td>
-                    </tr>
-                    <tr>
-                        <td>Muhammad Andreas Athallah Saifa Anam</td>
-                        <td>BMW M4</td>
-                        <td>2025-12-11</td>
-                        <td><span class="status selesai">Sudah Selesai</span></td>
-                    </tr>
-                    <tr>
-                        <td>Muhammad Andreas Athallah Saifa Anam</td>
-                        <td>BMW M4</td>
-                        <td>2025-12-11</td>
-                        <td><span class="status selesai">Sudah Selesai</span></td>
-                    </tr>
-                    <tr>
-                        <td>Muhammad Andreas Athallah Saifa Anam</td>
-                        <td>BMW M4</td>
-                        <td>2025-12-11</td>
-                        <td><span class="status selesai">Sudah Selesai</span></td>
-                    </tr>
+                    @forelse ($todayTrx as $trx)
+                        <tr>
+                            <td>{{ $trx->customer->name ?? '-' }}</td>
+                            <td>{{ $trx->item->name ?? '-' }}</td>
+                            <td>{{ \Carbon\Carbon::parse($trx->return_date)->format('d-m-Y') }}</td>
+                            <td>
+                                @if ($trx->status == 0)
+                                    <span class="status belum-kembali">Belum Kembali</span>
+                                @elseif ($trx->status == 1)
+                                    <span class="status terlambat">Terlambat</span>
+                                @elseif ($trx->status == 2)
+                                    <span class="status dibatalkan">Dibatalkan</span>
+                                @else
+                                    <span class="status selesai">Selesai</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 20px; color: var(--color5);">
+                                Tidak ada Daftar Pengembalian Hari Ini.
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

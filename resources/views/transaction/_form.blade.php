@@ -30,7 +30,7 @@
         </select>
 
         <label for="price">Harga :</label>
-        <input type="number" id="price" name="price" placeholder="Masukan Harga" oninput="formatRupiah(this)"
+        <input type="" id="price" name="price" placeholder="Masukan Harga" oninput="formatRupiah(this)"
             value="{{ $transaction->price ?? '' }}">
 
         <label for="date">Tanggal Pinjam :</label>
@@ -49,7 +49,7 @@
                     box-shadow: none;">
         <button type="submit" class="add-btn">Simpan Transaksi</button>
     </div>
-    <input type="hidden" name="statuses" value="{{ request('statuses', 'belum-kembali') }}">
+    {{-- <input type="hidden" name="statuses" value="{{ request('statuses', 'belum-kembali') }}"> --}}
 </form>
 
 <script>

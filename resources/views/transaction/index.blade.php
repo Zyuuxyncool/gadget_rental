@@ -8,15 +8,6 @@
 
         <div class="transaction-header">
 
-            @php
-                $statuses = request('statuses', 'belum-kembali');
-                $today = todayDate();
-                $dateValue = '';
-                if ($statuses == 'history') {
-                    $dateValue = request('date', $today);
-                }
-            @endphp
-
             <form id="search" style="display: flex; align-items: center; gap: 8px; margin-bottom:0; color: var(--white);">
                 @csrf
                 <input type="hidden" name="statuses" value="{{ $statuses }}">
@@ -68,6 +59,12 @@
             <div class="popup-box" id="popup-box">
             </div>
         </div>
+        @if (session('error'))
+            <div class="alert-error">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                <div style="flex: 1;">{{ session('error') }}</div>
+            </div>
+        @endif
 
         <div id="table-transaction"></div>
 
@@ -78,11 +75,12 @@
                 $table = $('#table-transaction'),
                 $popup = $('#popup'),
                 $popup_box = $('#popup-box');
-
+                
             let selected_page = 1,
                 _token = '{{ csrf_token() }}',
                 base_url = '{{ route('transaction.index') }}',
-                params_url = '{{ $params ?? '' }}';
+                params_url = '{{ $params ?? '' }}',
+                today = new Date().toISOString().slice(0, 10);
 
             let initTabStatus = () => {
                 $(document).off('click', '.tab-link-status').on('click', '.tab-link-status', handleTabLinkStatus);
@@ -116,40 +114,40 @@
                 // update_url(data);
                 $.post(base_url + '/search?' + params_url, data, function(result) {
                     $table.html(result);
-                    let current = $form_search.find('input[name="statuses"]').val();
+                    let current = $form_search.find('input[name="statuses"]').val('');
                     $('.tab-link-status').removeClass('active');
                     $('.tab-link-status[data-statuses="' + current + '"]').addClass('active');
                 }).fail((xhr) => $table.html(xhr.responseText));
             }
 
             let handleTabLinkStatus = (e) => {
-                e.preventDefault();
                 let $this = $(e.currentTarget),
                     statuses = $this.data('statuses');
                 $form_search.find('input[name="statuses"]').val(statuses);
                 selected_page = 1;
 
-                // Set date sesuai status
-                let $dateInput = $form_search.find('input[name="date"]');
-                if (statuses === 'history') {
-                    // Isi tanggal hari ini jika kosong
-                    let today = new Date().toISOString().slice(0, 10);
-                    if (!$dateInput.val()) {
-                        $dateInput.val(today);
-                    }
-                } else {
-                    // Kosongkan date untuk tab lain
-                    $dateInput.val('');
-                }
+                // let $dateInput = $form_search.find('input[name="date"]');
+                // if(statuses !== 'history') {
+                // // if (statuses === 'history') {
+                //     // let today = new Date().toISOString().slice(0, 10);
+                //         // $dateInput.val(today);
+                //     // }
+                // // } else {
+                //     $dateInput.val('');
+                // }
 
                 search_data(selected_page);
 
                 if (statuses === 'history') {
-                    let date = $dateInput.val();
+                    let customer = $form_search.find('input[name="customer"]').val('');
+                    let item = $form_search.find('input[name="item"]').val('');
+                    let date = $form_search.find('input[name="date"]').val('');
                     $('#export-btn-container').html(`
-                        <form method="GET" action="${base_url}/export" style="margin-left: 12px;" id="export-form">
+                        <form method="POST" action="${base_url}/export" style="margin-left: 12px;" id="export-form">
                             <input type="hidden" name="statuses" value="history">
                             <input type="hidden" name="date" value="${date}">
+                            <input type="hidden" name="customer" value="${customer}">
+                            <input type="hidden" name="item" value="${item}">
                             <button type="submit" class="export-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0,0,256,256">
                         <g fill="#ffffff" fill-rule="nonzero">
@@ -201,6 +199,10 @@
                             $('.tab-link-status').removeClass('active');
                             $('.tab-link-status[data-statuses="' + newTab + '"]').addClass('active');
                             $form_search.find('input[name="statuses"]').val(newTab);
+                            if (newTab === 'history') {
+                                today = new Date().toISOString().slice(0, 10);
+                                $form_search.find('input[name="date"]').val(today);
+                            }
                         }
                         search_data(selected_page);
                     } else {

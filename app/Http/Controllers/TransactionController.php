@@ -24,7 +24,13 @@ class TransactionController extends Controller
     public function index(Request $request)
     {
         $transactions = $this->transactionService->search($request);
-        return view('transaction.index', compact('transactions'));
+        $statuses = $request->input('statuses', 'belum-kembali');
+        $today = todayDate();
+        $dateValue = '';
+        if ($statuses == 'history') {
+            $dateValue = $request->input('date', $today);
+        }
+        return view('transaction.index', compact('transactions', 'statuses', 'today', 'dateValue'));
     }
 
     public function search(Request $request)
@@ -77,6 +83,14 @@ class TransactionController extends Controller
     public function export(Request $request)
     {
         $params = $request->all();
-        return Excel::download(new TransactionExport($params), 'transactions.xlsx');
+        $transactions = $this->transactionService->search($params);
+        if ($transactions->count() == 0) {
+            return back()->with('error', 'Tidak ada data untuk di-export.');
+        }
+
+        return \Maatwebsite\Excel\Facades\Excel::download(
+            new \App\Exports\TransactionExport($params),
+            'transactions.xlsx'
+        );
     }
 }

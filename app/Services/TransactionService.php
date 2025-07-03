@@ -26,7 +26,6 @@ class TransactionService extends Service
         if ($date !== '') {
             $transaction_service = $transaction_service->where('date', 'like', "%$date%");
         }
-        
 
         $statuses = [
             'belum-kembali' => 0,
@@ -96,5 +95,16 @@ class TransactionService extends Service
             $transaction->save();
         }
         return $transaction;
+    }
+
+    public function getCustomerTransactions($params = [])
+    {
+        $transaction_service = Transaction::with(['customer', 'item'])->orderBy('id');
+
+        $getCustomerTransactions = $params['customer_id'] ?? '';
+        if ($getCustomerTransactions) {
+            $transaction_service = $transaction_service->where('customer_id', $getCustomerTransactions);
+        }
+        return $transaction_service->get();
     }
 }

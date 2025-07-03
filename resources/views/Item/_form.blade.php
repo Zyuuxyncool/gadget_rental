@@ -19,7 +19,6 @@
 
     <div class="form-right" method="">
         <div class="drop-area" id="drop_area">
-            {{-- Hapus img dan p default, cukup preview --}}
             <input type="file" name="file_image" id="file_input" accept="image/*" hidden>
             <div id="preview_container">
                 @if (!empty($items) && !empty($items->image))
@@ -62,9 +61,7 @@
     const fileInput = document.getElementById("file_input");
     const previewContainer = document.getElementById("preview_container");
 
-    // Fungsi untuk menampilkan preview baru
     function previewImage(file) {
-        // Hapus semua isi previewContainer
         previewContainer.innerHTML = '';
         const reader = new FileReader();
         reader.onload = function(e) {
@@ -74,14 +71,12 @@
                 "max-width: 100px; max-height: 100px; margin-top: 10px; height: 100%; width: auto; cursor:pointer;";
             img.alt = "Preview";
             img.id = "img_preview";
-            // Klik gambar = buka file explorer
             img.onclick = () => fileInput.click();
             previewContainer.appendChild(img);
         };
         reader.readAsDataURL(file);
     }
 
-    // Drag & drop event
     ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
         dropArea.addEventListener(eventName, (e) => e.preventDefault());
     });
@@ -96,9 +91,7 @@
         }
     });
 
-    // Klik area drop atau gambar preview = buka file explorer
     dropArea.addEventListener("click", () => fileInput.click());
-    // Jika ada img preview dari server, tambahkan event click
     document.addEventListener("DOMContentLoaded", function() {
         const imgPreview = document.getElementById("img_preview");
         if (imgPreview) {
@@ -106,7 +99,6 @@
         }
     });
 
-    // Saat pilih gambar manual
     fileInput.addEventListener("change", () => {
         const file = fileInput.files[0];
         if (file && file.type.startsWith("image/")) {

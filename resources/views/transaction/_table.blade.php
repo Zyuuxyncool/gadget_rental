@@ -1,13 +1,16 @@
 <div class="table-transaction">
-
+    
+    <div style="font-weight: 500; color: var(--color5); margin-bottom: 10px; text-align: left;">
+        Jumlah data: {{ $transactions->total() ?? $transactions->count() }}
+    </div>
     <div class="tab-nav">
         <a href="javascript:void(0)" data-statuses="belum-kembali" class="tab-link tab-link-status">Belum Kembali</a>
         <a href="javascript:void(0)" data-statuses="terlambat" class="tab-link tab-link-status">Terlambat</a>
         <a href="javascript:void(0)" data-statuses="dibatalkan" class="tab-link tab-link-status">Dibatalkan</a>
         <a href="javascript:void(0)" data-statuses="history" class="tab-link tab-link-status">History Transaksi</a>
     </div>
-
-
+    
+    
     <table class="table">
         <thead>
             <tr>
@@ -37,9 +40,11 @@
                     <td>{{ \Carbon\Carbon::parse($transaction->return_date)->format('d-m-Y') }}</td>
                     <td>
                         <select id="status-{{ $transaction->id }}" onchange="update_status({{ $transaction->id }})">
-                            <option value="0" {{ $transaction->status == 0 ? 'selected' : '' }}>Belum Kembali</option>
+                            <option value="0" {{ $transaction->status == 0 ? 'selected' : '' }}>Belum Kembali
+                            </option>
                             <option value="1" {{ $transaction->status == 1 ? 'selected' : '' }}>Terlambat</option>
-                            <option value="2" {{ $transaction->status == 2 ? 'selected' : '' }}>Dibatalkan</option>
+                            <option value="2" {{ $transaction->status == 2 ? 'selected' : '' }}>Dibatalkan
+                            </option>
                             <option value="3" {{ $transaction->status == 3 ? 'selected' : '' }}>Selesai</option>
                         </select>
                     </td>
@@ -60,4 +65,3 @@
         {{ $transactions->links('vendor.pagination.custom') }}
     @endif
 </div>
-

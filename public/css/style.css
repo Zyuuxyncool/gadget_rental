@@ -10,9 +10,9 @@
 input:-webkit-autofill {
     font-size: 18px !important;
     background-color: transparent !important;
-    caret-color: white !important; 
+    caret-color: white !important;
     transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: white !important; 
+    -webkit-text-fill-color: white !important;
 }
 
 :root {
@@ -100,6 +100,28 @@ input:-webkit-autofill {
 }
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color1);
+}
+
+.alert-error {
+    margin-top: 20px;
+    background: #fff0f0;
+    border-left: 5px solid #ff4c4c;
+    padding: 16px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(255, 76, 76, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #b00020;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.alert-error ion-icon {
+    font-size: 22px;
+    color: #ff4c4c;
+    flex-shrink: 0;
 }
 
 .pagination-nav {
@@ -622,7 +644,7 @@ body {
     color: var(--color3);
 }
 .details .recent-orders table tr td {
-    padding: 10px;
+    /* padding: 2px; */
 }
 .details .recent-orders table tr td:last-child {
     text-align: end;

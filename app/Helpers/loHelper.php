@@ -135,7 +135,7 @@ function list_full_dates($year, $month = 0)
         for ($day = 1; $day <= $max; $day++) {
             $dates[] = [
                 'date' => date('Y-m-d', strtotime($year . '-' . $i_month . '-' . $day)),
-                'date_word' => list_hari()[date('N', strtotime($year . '-' . $i_month . '-' . $day))-1]
+                'date_word' => list_hari()[date('N', strtotime($year . '-' . $i_month . '-' . $day)) - 1]
             ];
         }
         $result[$i_month] = $dates;
@@ -192,12 +192,18 @@ function number_to_alphabeth($number)
 function number_to_roman($number)
 {
     $map = [
-        'M' => 1000, 'CM' => 900,
-        'D' => 500, 'CD' => 400,
-        'C' => 100, 'XC' => 90,
-        'L' => 50, 'XL' => 40,
-        'X' => 10, 'IX' => 9,
-        'V' => 5, 'IV' => 4,
+        'M' => 1000,
+        'CM' => 900,
+        'D' => 500,
+        'CD' => 400,
+        'C' => 100,
+        'XC' => 90,
+        'L' => 50,
+        'XL' => 40,
+        'X' => 10,
+        'IX' => 9,
+        'V' => 5,
+        'IV' => 4,
         'I' => 1,
     ];
 
@@ -215,12 +221,18 @@ function number_to_roman($number)
 function roman_to_number($roman)
 {
     $romans = [
-        'M' => 1000, 'CM' => 900,
-        'D' => 500, 'CD' => 400,
-        'C' => 100, 'XC' => 90,
-        'L' => 50, 'XL' => 40,
-        'X' => 10, 'IX' => 9,
-        'V' => 5, 'IV' => 4,
+        'M' => 1000,
+        'CM' => 900,
+        'D' => 500,
+        'CD' => 400,
+        'C' => 100,
+        'XC' => 90,
+        'L' => 50,
+        'XL' => 40,
+        'X' => 10,
+        'IX' => 9,
+        'V' => 5,
+        'IV' => 4,
         'I' => 1,
     ];
 
@@ -235,7 +247,8 @@ function roman_to_number($roman)
 }
 
 
-function spell_number_core($nilai) {
+function spell_number_core($nilai)
+{
     $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
     if ($nilai < 12) return $huruf[$nilai];
     elseif ($nilai < 20) return spell_number_core($nilai - 10) . " belas";
@@ -248,7 +261,8 @@ function spell_number_core($nilai) {
     return "";
 }
 
-function spell_number($number) {
+function spell_number($number)
+{
     if ($number == '') return "";
     if ($number == 0) return "nol";
     elseif ($number < 0) return "minus " . spell_number_core(abs($number));
@@ -277,4 +291,9 @@ function unformat_number($number)
 function todayDate()
 {
     return \Carbon\Carbon::now()->format('Y-m-d');
+}
+
+function isToday($date)
+{
+    return \Carbon\Carbon::parse($date)->isToday();
 }
