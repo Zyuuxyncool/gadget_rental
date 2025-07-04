@@ -114,7 +114,7 @@
                 // update_url(data);
                 $.post(base_url + '/search?' + params_url, data, function(result) {
                     $table.html(result);
-                    let current = $form_search.find('input[name="statuses"]').val('');
+                    let current = $form_search.find('input[name="statuses"]').val();
                     $('.tab-link-status').removeClass('active');
                     $('.tab-link-status[data-statuses="' + current + '"]').addClass('active');
                 }).fail((xhr) => $table.html(xhr.responseText));
@@ -139,11 +139,11 @@
                 search_data(selected_page);
 
                 if (statuses === 'history') {
-                    let customer = $form_search.find('input[name="customer"]').val('');
-                    let item = $form_search.find('input[name="item"]').val('');
-                    let date = $form_search.find('input[name="date"]').val('');
+                    let customer = $form_search.find('input[name="customer"]').val();
+                    let item = $form_search.find('input[name="item"]').val();
+                    let date = $form_search.find('input[name="date"]').val();
                     $('#export-btn-container').html(`
-                        <form method="POST" action="${base_url}/export" style="margin-left: 12px;" id="export-form">
+                        <form method="GET" action="${base_url}/export" style="margin-left: 12px;" id="export-form">
                             <input type="hidden" name="statuses" value="history">
                             <input type="hidden" name="date" value="${date}">
                             <input type="hidden" name="customer" value="${customer}">

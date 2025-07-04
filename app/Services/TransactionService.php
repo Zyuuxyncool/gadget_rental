@@ -97,14 +97,20 @@ class TransactionService extends Service
         return $transaction;
     }
 
-    public function getCustomerTransactions($params = [])
+    public function getTTransactionCustomerId($params = [])
     {
         $transaction_service = Transaction::with(['customer', 'item'])->orderBy('id');
 
-        $getCustomerTransactions = $params['customer_id'] ?? '';
-        if ($getCustomerTransactions) {
-            $transaction_service = $transaction_service->where('customer_id', $getCustomerTransactions);
+        $customer_id = $params['customer_id'] ?? '';
+        if ($customer_id !== '') {
+            $transaction_service = $transaction_service->where('customer_id', $customer_id);
         }
-        return $transaction_service->get();
+
+        $date = $params['date'] ?? '';
+        if ($date !== '') {
+            $transaction_service = $transaction_service->whereDate('return_date', $date);
+        }
+
+        return $this->searchResponse($params, $transaction_service);
     }
 }

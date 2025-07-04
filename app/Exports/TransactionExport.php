@@ -30,10 +30,10 @@ class TransactionExport implements FromQuery, WithHeadings, WithMapping
         if (!empty($this->params['statuses']) && isset($statuses[$this->params['statuses']])) {
             $query->where('status', $statuses[$this->params['statuses']]);
         }
+
         if (!empty($this->params['date'])) {
             $query->where('date', $this->params['date']);
         }
-
         return $query;
     }
 

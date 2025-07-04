@@ -1,16 +1,22 @@
 <div class="table-transaction">
-    
+
     <div style="font-weight: 500; color: var(--color5); margin-bottom: 10px; text-align: left;">
         Jumlah data: {{ $transactions->total() ?? $transactions->count() }}
     </div>
     <div class="tab-nav">
-        <a href="javascript:void(0)" data-statuses="belum-kembali" class="tab-link tab-link-status">Belum Kembali</a>
-        <a href="javascript:void(0)" data-statuses="terlambat" class="tab-link tab-link-status">Terlambat</a>
-        <a href="javascript:void(0)" data-statuses="dibatalkan" class="tab-link tab-link-status">Dibatalkan</a>
-        <a href="javascript:void(0)" data-statuses="history" class="tab-link tab-link-status">History Transaksi</a>
+        <a href="javascript:void(0)" data-statuses="belum-kembali"
+            class="tab-link tab-link-status{{ request('statuses', 'belum-kembali') == 'belum-kembali' ? ' active' : '' }}">Belum
+            Kembali</a>
+        <a href="javascript:void(0)" data-statuses="terlambat"
+            class="tab-link tab-link-status{{ request('statuses') == 'terlambat' ? ' active' : '' }}">Terlambat</a>
+        <a href="javascript:void(0)" data-statuses="dibatalkan"
+            class="tab-link tab-link-status{{ request('statuses') == 'dibatalkan' ? ' active' : '' }}">Dibatalkan</a>
+        <a href="javascript:void(0)" data-statuses="history"
+            class="tab-link tab-link-status{{ request('statuses') == 'history' ? ' active' : '' }}">History
+            Transaksi</a>
     </div>
-    
-    
+
+
     <table class="table">
         <thead>
             <tr>

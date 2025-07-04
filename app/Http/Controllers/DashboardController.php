@@ -27,10 +27,17 @@ class DashboardController extends Controller
         $customer_limits = $this->customerService->search(['limit' => 10]);
         $customers_count = $this->customerService->search(['count' => 1]);
         $transactions = $this->transactionService->search(['count' => 1]);
+        $transactions_total = $this->transactionService->search(['sum' => 'price', 'statuses' => 'history']); 
         $statuses = $this->transactionService->getStatuses();
-        $transactions_customer_id = $this->transactionService->search(['customer_id' => $request->input('customer')]);
         $customer = $request->input('customer', '');
-        $transactions_customer_id = this
+        $todayTrx = $this->transactionService->getTTransactionCustomerId(
+            [
+                'customer' => $customer,
+                'statuses' => 'belum-kembali',
+                'date' => todayDate()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+            ]
+        );
+
         $customers = $this->customerService->search();
 
         return view('dashboard', compact(
@@ -39,7 +46,8 @@ class DashboardController extends Controller
             'transactions',
             'customer_limits',
             'customers_count',
-            'transactions_customer_id'
+            'todayTrx',
+            'transactions_total',
         ));
     }
 }

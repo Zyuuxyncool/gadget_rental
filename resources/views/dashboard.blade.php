@@ -39,7 +39,7 @@
 
         <div class="card">
             <div>
-                <div class="numbers">Rp. 1.000.000</div>
+                <div class="numbers">Rp. {{  number_format($transactions_total, 0, ',', '.') }}</div>
                 <div class="card-name">Penghasilan</div>
             </div>
 
@@ -64,11 +64,6 @@
                         <td>Status</td>
                     </tr>
                 </thead>
-                @php
-                    $todayTrx = $transactions_customer_id->filter(function ($trx) {
-                        return isToday($trx->return_date);
-                    });
-                @endphp
                 <tbody>
                     @forelse ($todayTrx as $trx)
                         <tr>
