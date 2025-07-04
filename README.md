@@ -107,9 +107,9 @@
 
 ---
 
-## 📸 Cuplikan Tampilan *(Opsional)*
+## 📸 Cuplikan Tampilan *
 
-Tambahkan screenshot di sini untuk menunjukkan tampilan dashboard, form transaksi, dll.
+Not Found.
 
 ---
 
