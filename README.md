@@ -63,7 +63,7 @@
 | Komponen   | Teknologi                        |
 |------------|----------------------------------|
 | Backend    | [Laravel](https://laravel.com/) (PHP) |
-| Frontend   | Blade Template + jQuery          |
+| Frontend   | Blade Template + jQuery + Ajax   |
 | Database   | MySQL                            |
 | Ekspor Data | [Laravel Excel (Maatwebsite)](https://laravel-excel.com/) |
 
