@@ -1,4 +1,4 @@
-<p>========================================================</p>
+<p>=====================================================================================================</p>
 <p>    
     Gadget Rental Management System
 Aplikasi Gadget Rental adalah sistem manajemen penyewaan gadget berbasis web yang dibangun menggunakan Laravel. Sistem ini memudahkan pengelolaan transaksi penyewaan, pengembalian, pelanggan, dan laporan keuangan.
