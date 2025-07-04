@@ -1,3 +1,44 @@
+<p>========================================================</p>
+<p>    
+    Gadget Rental Management System
+Aplikasi Gadget Rental adalah sistem manajemen penyewaan gadget berbasis web yang dibangun menggunakan Laravel. Sistem ini memudahkan pengelolaan transaksi penyewaan, pengembalian, pelanggan, dan laporan keuangan.
+
+Fitur Utama
+Dashboard Ringkasan
+
+Menampilkan total penghasilan (hanya dari transaksi selesai/history).
+Statistik jumlah item, pelanggan, dan transaksi.
+Daftar pengembalian gadget hari ini.
+Manajemen Transaksi
+
+Tambah, edit, hapus transaksi penyewaan.
+Filter transaksi berdasarkan status (belum kembali, terlambat, dibatalkan, history).
+Pencarian berdasarkan nama pelanggan, nama item, dan tanggal.
+Export Data
+
+Export data transaksi ke Excel, bisa difilter berdasarkan status, tanggal, pelanggan, dan item.
+Manajemen Pelanggan & Item
+
+Tambah, edit, hapus data pelanggan dan item gadget.
+Teknologi
+Backend: Laravel (PHP)
+Frontend: Blade Template, jQuery
+Database: MySQL
+Export: Laravel Excel (Maatwebsite)
+Cara Menjalankan :
+Clone repository
+Install dependency
+composer install
+npm install
+Copy .env dan atur koneksi database :
+cp .env.example .env
+Generate key :
+php artisan key:generate
+Migrate Database :
+php artisan migrate
+</p>
+<p>========================================================</p>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
