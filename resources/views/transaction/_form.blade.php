@@ -14,7 +14,7 @@
             @foreach ($customers as $customer)
                 <option value="{{ $customer->id }}"
                     {{ $customer->id == ($transaction->customer_id ?? '') ? 'selected' : '' }}>
-                    {{ $customer->name }}
+                    {{ $customer->name }} ({{ $customer->no_id }}) 
                 </option>
             @endforeach
         </select>
@@ -24,7 +24,7 @@
             <option value="">-- Pilih Item --</option>
             @foreach ($items as $item)
                 <option value="{{ $item->id }}" {{ $item->id == ($transaction->item_id ?? '') ? 'selected' : '' }}>
-                    {{ $item->name }}
+                    {{ $item->name }} ({{ number_format($item->price, 0, ',', '.') }}) ({{ $item->description }})
                 </option>
             @endforeach
         </select>

@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $customer_limits = $this->customerService->search(['limit' => 10]);
         $customers_count = $this->customerService->search(['count' => 1]);
         $transactions = $this->transactionService->search(['count' => 1]);
-        $transactions_total = $this->transactionService->search(['sum' => 'price', 'statuses' => 'history']); 
+        $transactions_total = $this->transactionService->search(['sum' => 'price', 'statuses' => 'history,terlambat']);
         $statuses = $this->transactionService->getStatuses();
         $customer = $request->input('customer', '');
         $todayTrx = $this->transactionService->getTTransactionCustomerId(

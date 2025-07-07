@@ -1,83 +1,23 @@
+function toggleThemePanel() {
+        const panel = document.getElementById("theme-panel");
+        panel?.classList.toggle("active");
+    }
+
 document.addEventListener("DOMContentLoaded", function () {
-    //  Logika Sidebar
-    let toggle = document.querySelector(".toggle");
-    let navigation = document.querySelector(".sidebar");
-    let main = document.querySelector(".main");
-
-    function isDesktop() {
-        return window.innerWidth > 768;
-    }
-
-    if (isDesktop() && localStorage.getItem("sidebar-collapsed") === "true") {
-        navigation.classList.add("active");
-        if (main) main.classList.add("active");
-    }
-
-    toggle.onclick = function () {
-        navigation.classList.toggle("active");
-        if (main) main.classList.toggle("active");
-        if (isDesktop()) {
-            localStorage.setItem(
-                "sidebar-collapsed",
-                navigation.classList.contains("active")
-            );
-        }
-    };
-
-    window.addEventListener("resize", function () {
-        if (!isDesktop()) {
-            navigation.classList.remove("active");
-            if (main) main.classList.remove("active");
-        }
-    });
-
-    // Logika nya icon yang ada di select
-    const select = document.getElementById("showSelect");
-    const icon = document.getElementById("selectIcon");
-    if (select && icon) {
-        select.addEventListener("focus", function () {
-            icon.setAttribute("name", "chevron-up-circle-outline");
-        });
-        select.addEventListener("blur", function () {
-            icon.setAttribute("name", "chevron-down-circle-outline");
-        });
-    }
-
-    // logika show entries
-    var rows = document.querySelectorAll("#productsTable tbody tr");
-    var defaultEntries = 10;
-    rows.forEach((row, index) => {
-        if (index < defaultEntries) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
-        }
-    });
-
-    if (select) {
-        select.addEventListener("change", function () {
-            var selectedValue = parseInt(this.value);
-            var rows = document.querySelectorAll("#productsTable tbody tr");
-            rows.forEach((row, index) => {
-                if (index < selectedValue) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
-        });
-    }
-
-    // logika tema
+    // ====================== TEMA =========================
     const body = document.getElementById("bodyTheme");
     const savedTemplate = localStorage.getItem("selectedTemplate") || "1";
-    ubahTemplate(savedTemplate);
+    if (body) {
+        body.classList.remove("template-1", "template-2");
+        body.classList.add(`template-${savedTemplate}`);
+    }
 
     document.querySelectorAll(".theme-option").forEach((btn) => {
         btn.classList.remove("selected");
         if (btn.dataset.theme === `template-${savedTemplate}`) {
             btn.classList.add("selected");
         }
+
         btn.onclick = function () {
             document
                 .querySelectorAll(".theme-option")
@@ -89,58 +29,112 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     });
 
+    function ubahTemplate(angkaTemplate) {
+        if (!body) return;
+        body.classList.remove("template-1", "template-2");
+        body.classList.add(`template-${angkaTemplate}`);
+        localStorage.setItem("selectedTemplate", angkaTemplate);
+    }
+
+    // ===================== SIDEBAR =========================
+    const navigation = document.querySelector(".sidebar");
+    const main = document.querySelector(".main");
+    const toggle = document.querySelector(".toggle");
+
+    function isDesktop() {
+        return window.innerWidth > 768;
+    }
+
+    if (isDesktop() && localStorage.getItem("sidebar-collapsed") === "true") {
+        navigation?.classList.add("active");
+        main?.classList.add("active");
+    }
+
+    toggle?.addEventListener("click", () => {
+        navigation?.classList.toggle("active");
+        main?.classList.toggle("active");
+
+        if (isDesktop()) {
+            localStorage.setItem(
+                "sidebar-collapsed",
+                navigation?.classList.contains("active")
+            );
+        }
+    });
+
+    window.addEventListener("resize", function () {
+        if (!isDesktop()) {
+            navigation?.classList.remove("active");
+            main?.classList.remove("active");
+        }
+    });
+
+    // ===================== DROPDOWN ICON =====================
+    const select = document.getElementById("showSelect");
+    const icon = document.getElementById("selectIcon");
+    if (select && icon) {
+        select.addEventListener("focus", () =>
+            icon.setAttribute("name", "chevron-up-circle-outline")
+        );
+        select.addEventListener("blur", () =>
+            icon.setAttribute("name", "chevron-down-circle-outline")
+        );
+    }
+
+    // ===================== SHOW ENTRIES ======================
+    const rows = document.querySelectorAll("#productsTable tbody tr");
+    const defaultEntries = 10;
+
+    if (rows.length > 0) {
+        rows.forEach((row, index) => {
+            row.style.display = index < defaultEntries ? "" : "none";
+        });
+
+        select?.addEventListener("change", function () {
+            const selectedValue = parseInt(this.value);
+            rows.forEach((row, index) => {
+                row.style.display = index < selectedValue ? "" : "none";
+            });
+        });
+    }
+
+    // ===================== DROPDOWN CUSTOM =====================
     document.addEventListener("click", function (e) {
         const toggleBtn = e.target.closest(".dropdown-toggle");
-
         if (toggleBtn) {
             e.stopPropagation();
-
-            // Toggle class 'active' pada tombol
             toggleBtn.classList.toggle("active");
 
             const dropdown = toggleBtn.parentElement.querySelector(".action");
-            const isVisible = dropdown.style.display === "block";
+            const isVisible = dropdown?.style.display === "block";
 
-            // Tutup semua dropdown lainnya
-            document.querySelectorAll(".action").forEach((menu) => {
-                menu.style.display = "none";
-            });
+            document
+                .querySelectorAll(".action")
+                .forEach((menu) => (menu.style.display = "none"));
+            document
+                .querySelectorAll(".dropdown-toggle")
+                .forEach((btn) => btn.classList.remove("active"));
 
-            document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
-                btn.classList.remove("active");
-            });
-
-            // Jika sebelumnya tidak terlihat, tampilkan yang ini
             if (!isVisible) {
                 dropdown.style.display = "block";
                 toggleBtn.classList.add("active");
             }
         } else {
-            // Klik di luar dropdown → tutup semua
-            document.querySelectorAll(".action").forEach((menu) => {
-                menu.style.display = "none";
-            });
-            document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
-                btn.classList.remove("active");
-            });
+            document
+                .querySelectorAll(".action")
+                .forEach((menu) => (menu.style.display = "none"));
+            document
+                .querySelectorAll(".dropdown-toggle")
+                .forEach((btn) => btn.classList.remove("active"));
         }
     });
+
+    // ===================== DRAG-DROP FILE PREVIEW =====================
+
+    // ===================== FORMAT RUPIAH ======================
+    window.formatRupiah = function (input) {
+        let value = input.value.replace(/\D/g, "");
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        input.value = value;
+    };
 });
-
-function ubahTemplate(angkaTemplate) {
-    const body = document.getElementById("bodyTheme");
-    body.classList.remove("template-1", "template-2");
-    body.classList.add(`template-${angkaTemplate}`);
-    localStorage.setItem("selectedTemplate", angkaTemplate);
-}
-
-function toggleThemePanel() {
-    const panel = document.getElementById("theme-panel");
-    panel.classList.toggle("active");
-}
-
-function formatRupiah(input) {
-    let value = input.value.replace(/\D/g, "");
-    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    input.value = value;
-}

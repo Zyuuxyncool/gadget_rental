@@ -43,7 +43,6 @@
 
 @push('scripts')
     <script>
-        
         let $form_search = $('#search'),
             $table = $('#table'),
             $popup = $('#popup'),
@@ -70,9 +69,57 @@
                 xhr.responseText));
         }
 
+        function initDropDragImage() {
+            const dropArea = document.getElementById("drop_area");
+            const fileInput = document.getElementById("file_input");
+            const previewContainer = document.getElementById("preview_container");
+
+            if (dropArea && fileInput && previewContainer) {
+                function previewImage(file) {
+                    previewContainer.innerHTML = "";
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.createElement("img");
+                        img.src = e.target.result;
+                        img.style =
+                            "max-width: 100px; max-height: 100px; margin-top: 10px; height: 100%; width: auto; cursor:pointer;";
+                        img.alt = "Preview";
+                        img.id = "img_preview";
+                        img.onclick = () => fileInput.click();
+                        previewContainer.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+                    dropArea.addEventListener(eventName, (e) => e.preventDefault());
+                });
+
+                dropArea.addEventListener("drop", (e) => {
+                    const file = e.dataTransfer.files[0];
+                    if (file && file.type.startsWith("image/")) {
+                        previewImage(file);
+                        const dt = new DataTransfer();
+                        dt.items.add(file);
+                        fileInput.files = dt.files;
+                    }
+                });
+
+                dropArea.addEventListener("click", () => fileInput.click());
+
+                fileInput.addEventListener("change", () => {
+                    const file = fileInput.files[0];
+                    if (file && file.type.startsWith("image/")) {
+                        previewImage(file);
+                    }
+                });
+            }
+        }
+
         let display_popup_info = (items) => {
             $popup_box.html(items);
             $popup.css('display', 'flex');
+            initDropDragImage();
         }
 
         let info = (id = '') => {

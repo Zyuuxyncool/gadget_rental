@@ -320,6 +320,11 @@ body {
     width: 100%;
 }
 
+.sidebar,
+.main {
+    will-change: width, left, margin-left;
+}
+
 /* =============== Navigation ================ */
 .sidebar {
     position: fixed;
@@ -327,7 +332,8 @@ body {
     height: 100%;
     background: var(--color1);
     border-left: 10px solid var(--color1);
-    transition: 0.5s;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
 }
 .sidebar.active {
@@ -430,7 +436,7 @@ body {
     left: 300px;
     min-height: 100vh;
     background: var(--color6);
-    transition: 0.5s;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .main.active {
     width: calc(100% - 80px);

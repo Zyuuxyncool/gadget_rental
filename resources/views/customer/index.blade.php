@@ -49,40 +49,7 @@
 
         let init = () => {
             $popup_box.html('');
-            try {
-                $popup.css('display', 'none');
-                $provinsi.select2({
-                    allowClear: true,
-                    width: "100%",
-                    dropdownParent: $container,
-                    dropdownPosition: "below",
-                    minimumResultsForSearch: 0,
-                });
-
-                $kabupaten.select2({
-                    allowClear: true,
-                    width: "100%",
-                    dropdownParent: $container,
-                    dropdownPosition: "below",
-                    minimumResultsForSearch: 0,
-                });
-
-                $kecamatan.select2({
-                    allowClear: true,
-                    width: "100%",
-                    dropdownParent: $container,
-                    dropdownPosition: "below",
-                    minimumResultsForSearch: 0,
-                });
-
-                $kelurahan.select2({
-                    allowClear: true,
-                    width: "100%",
-                    dropdownParent: $container,
-                    dropdownPosition: "below",
-                    minimumResultsForSearch: 0,
-                });
-            } catch (e) {}
+            $popup.hide();
             search_data(selected_page);
         }
 
@@ -90,44 +57,84 @@
             let data = get_form_data($form_search);
             data.paginate = 10;
             data.page = selected_page = get_selected_page(page, selected_page);
-            $.post(base_url + '/search?' + params_url, data, (result) => $table.html(result)).fail((xhr) => $table.html(
-                xhr.responseText));
+            $.post(base_url + '/search?' + params_url, data, (result) => $table.html(result))
+                .fail((xhr) => $table.html(xhr.responseText));
+        }
+
+        function initDropDragImage() {
+            const dropArea = document.getElementById("drop_area");
+            const fileInput = document.getElementById("file_input");
+            const previewContainer = document.getElementById("preview_container");
+
+            if (dropArea && fileInput && previewContainer) {
+                function previewImage(file) {
+                    previewContainer.innerHTML = "";
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.createElement("img");
+                        img.src = e.target.result;
+                        img.style =
+                            "max-width: 100px; max-height: 100px; margin-top: 10px; height: 100%; width: auto; cursor:pointer;";
+                        img.alt = "Preview";
+                        img.id = "img_preview";
+                        img.onclick = () => fileInput.click();
+                        previewContainer.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+                    dropArea.addEventListener(eventName, (e) => e.preventDefault());
+                });
+
+                dropArea.addEventListener("drop", (e) => {
+                    const file = e.dataTransfer.files[0];
+                    if (file && file.type.startsWith("image/")) {
+                        previewImage(file);
+                        const dt = new DataTransfer();
+                        dt.items.add(file);
+                        fileInput.files = dt.files;
+                    }
+                });
+
+                dropArea.addEventListener("click", () => fileInput.click());
+
+                fileInput.addEventListener("change", () => {
+                    const file = fileInput.files[0];
+                    if (file && file.type.startsWith("image/")) {
+                        previewImage(file);
+                    }
+                });
+            }
         }
 
         let display_popup_info = (customers) => {
             $popup_box.html(customers);
             $popup.css('display', 'flex');
-            let $container = $('.form-left');
-            if ($('#provinsi').length) {
-                $('#provinsi').select2({
+
+            let $form = $('#form-flex');
+            let $container = $form.find('.form-left');
+
+            let provinsi_id = $form.data('provinsi') || '';
+            let kabupaten_id = $form.data('kabupaten') || '';
+            let kecamatan_id = $form.data('kecamatan') || '';
+            let kelurahan_id = $form.data('kelurahan') || '';
+
+            ['provinsi', 'kabupaten', 'kecamatan', 'kelurahan'].forEach(function(id) {
+                $('#' + id).select2({
                     allowClear: true,
                     width: "100%",
                     dropdownParent: $container,
                     dropdownPosition: "below",
                     minimumResultsForSearch: 0,
                 });
-                $('#kabupaten').select2({
-                    allowClear: true,
-                    width: "100%",
-                    dropdownParent: $container,
-                    dropdownPosition: "below",
-                    minimumResultsForSearch: 0,
-                });
-                $('#kecamatan').select2({
-                    allowClear: true,
-                    width: "100%",
-                    dropdownParent: $container,
-                    dropdownPosition: "below",
-                    minimumResultsForSearch: 0,
-                });
-                $('#kelurahan').select2({
-                    allowClear: true,
-                    width: "100%",
-                    dropdownParent: $container,
-                    dropdownPosition: "below",
-                    minimumResultsForSearch: 0,
-                });
-            }
+            });
+
+            get_lokasi($('#provinsi'), 1, '', provinsi_id);
+            get_lokasi($('#kabupaten'), 2, provinsi_id, kabupaten_id);
+            get_lokasi($('#kecamatan'), 3, kabupaten_id, kecamatan_id);
+            get_lokasi($('#kelurahan'), 4, kecamatan_id, kelurahan_id);
+            initDropDragImage();
         }
 
         let info = (id = '') => {
@@ -135,6 +142,21 @@
                 display_popup_info(result);
             }).fail((xhr) => {
                 display_popup_info(xhr.responseText);
+            });
+        }
+
+        let get_lokasi = ($target, tingkat, parent_id = "", selected = "") => {
+            $target.html('<option value="">Loading...</option>');
+            $.get(`/api/lokasi/${parent_id}`, {
+                tingkat
+            }, function(data) {
+                let caption = ['Provinsi', 'Kabupaten', 'Kecamatan', 'Kelurahan'][tingkat - 1];
+                let options = `<option value="">-Pilih ${caption}-</option>`;
+                data.forEach((item) => {
+                    let selectedAttr = item.id == selected ? "selected" : "";
+                    options += `<option value="${item.id}" ${selectedAttr}>${item.nama}</option>`;
+                });
+                $target.html(options).trigger("change.select2");
             });
         }
 
