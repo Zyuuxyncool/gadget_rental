@@ -1,3 +1,126 @@
+
+<h1 align="center">
+  <span style="color:#FF5733">G</span>
+  <span style="color:#FF8D1A">a</span>
+  <span style="color:#FFC300">d</span>
+  <span style="color:#DAF7A6">g</span>
+  <span style="color:#33FFBD">e</span>
+  <span style="color:#33FFF0">t</span>
+  <span style="color:#33C4FF"> </span>
+  <span style="color:#339BFF">R</span>
+  <span style="color:#3371FF">e</span>
+  <span style="color:#7A33FF">n</span>
+  <span style="color:#B833FF">t</span>
+  <span style="color:#E533FF">a</span>
+  <span style="color:#FF33D4">l</span>
+  <span style="color:#FF3399"> </span>
+  <span style="color:#FF3366">M</span>
+  <span style="color:#FF3333">a</span>
+  <span style="color:#FF6F33">n</span>
+  <span style="color:#FFA533">a</span>
+  <span style="color:#FFD133">g</span>
+  <span style="color:#D4FF33">e</span>
+  <span style="color:#98FF33">m</span>
+  <span style="color:#66FF33">e</span>
+  <span style="color:#33FF57">n</span>
+  <span style="color:#33FF8A">t</span>
+  <span style="color:#33FFBD"> </span>
+  <span style="color:#33FFF0">S</span>
+  <span style="color:#33C4FF">y</span>
+  <span style="color:#339BFF">s</span>
+  <span style="color:#3371FF">t</span>
+  <span style="color:#7A33FF">e</span>
+  <span style="color:#B833FF">m</span>
+</h1>
+
+---
+
+## 🚀 Fitur Utama
+
+### 📊 Dashboard Ringkasan
+- Menampilkan total penghasilan (hanya dari transaksi yang telah selesai).
+- Statistik jumlah item, pelanggan, dan transaksi.
+- Daftar pengembalian gadget yang dijadwalkan hari ini.
+
+### 🔄 Manajemen Transaksi
+- Tambah, edit, dan hapus transaksi penyewaan.
+- Filter transaksi berdasarkan:
+  - Status: Belum Kembali, Terlambat, Dibatalkan, History (selesai).
+  - Nama pelanggan, nama item, dan tanggal transaksi.
+
+### 📤 Export Data
+- Ekspor data transaksi ke file Excel.
+- Dapat difilter berdasarkan status, tanggal, pelanggan, dan item.
+
+### 👥 Manajemen Pelanggan & Item
+- Tambah, edit, dan hapus data pelanggan.
+- Tambah, edit, dan hapus item gadget yang disewakan.
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+| Komponen   | Teknologi                        |
+|------------|----------------------------------|
+| Backend    | [Laravel](https://laravel.com/) (PHP) |
+| Frontend   | Blade Template + jQuery + Ajax   |
+| Database   | MySQL                            |
+| Ekspor Data | [Laravel Excel (Maatwebsite)](https://laravel-excel.com/) |
+
+---
+
+## ⚙️ Cara Menjalankan Proyek
+
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/username/gadget-rental.git
+   cd gadget-rental
+   ```
+
+2. **Install Dependency**
+   ```bash
+   composer install
+   npm install
+   ```
+
+3. **Copy File Environment dan Konfigurasi**
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Generate Application Key**
+   ```bash
+   php artisan key:generate
+   ```
+
+5. **Atur Koneksi Database di File `.env`**
+
+6. **Migrasi Database**
+   ```bash
+   php artisan migrate
+   ```
+
+7. **(Opsional) Jalankan Development Server**
+   ```bash
+   php artisan serve
+   ```
+
+---
+
+## 📸 Cuplikan Tampilan *
+
+Not Found.
+
+---
+
+## 🤝 Kontribusi
+
+Kontribusi sangat terbuka! Silakan buat `issue` atau `pull request` jika Anda ingin menambahkan fitur atau melaporkan bug.
+
+---
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
