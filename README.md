@@ -107,12 +107,6 @@
 
 ---
 
-## 📸 Cuplikan Tampilan *
-
-Not Found.
-
----
-
 ## 🤝 Kontribusi
 
 Kontribusi sangat terbuka! Silakan buat `issue` atau `pull request` jika Anda ingin menambahkan fitur atau melaporkan bug.
